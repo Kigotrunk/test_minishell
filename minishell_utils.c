@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/15 21:31:47 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/15 23:34:05 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char **ft_unset_utils(char **env, char	*var, int index)
 		i++;
 	}
 	new_env[x] = NULL;
-	ft_free_tab(env);
-	exit(0);
+	//ft_free_tab(env);
 	return (new_env);
 }
 

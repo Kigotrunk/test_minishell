@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 // echo cd pwd export unset env exit
-int builtin(char *cmd)
+int is_builtin(char *cmd)
 {
     char    *all_cmd;
     char    **tab_cmd;

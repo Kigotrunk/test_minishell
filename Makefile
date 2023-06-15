@@ -6,7 +6,7 @@
 #    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/15 17:25:19 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/15 23:25:35 by kallegre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,10 @@ LIBFT    =    ft_printf/libftprintf.a
 SRCS     =  main.c \
 			get_next_line/get_next_line_bonus.c \
 			get_next_line/get_next_line_utils_bonus.c \
+			builtin_1.c \
+			builtin_2.c \
+			new_env.c \
+			minishell_utils.c \
 											
 
 OBJS    = $(SRCS:.c=.o)

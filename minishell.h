@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/15 23:09:22 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/15 23:23:50 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**split_args(char *str);
 void    minishell(char **argv, char **envp);
 
 //is_builtin && called ft_builtins
-int     builtin(char *cmd);
+int     is_builtin(char *cmd);
 void    do_builtin(char **cmd, char **env);
 
 //ft_builtin

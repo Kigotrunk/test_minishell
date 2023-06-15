@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/15 23:00:36 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/15 23:24:29 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,10 +172,11 @@ int main(int argc, char **argv, char **envp)
 {
     char *input;
     char **args;
-    //int i;
+    char **env;
 
     (void)argc;
     (void)argv;
+    env = cpy_env(envp);
     ft_printf("minishell$ ");
     while ((input = get_next_line(0)))
     {
@@ -187,27 +188,20 @@ int main(int argc, char **argv, char **envp)
             continue ;
         }
         args = split_args(input);
-        minishell(args, envp);
-        /*if (argv)
-        {
-            i = 0;
-            while (argv[i])
-            {
-                ft_printf("%s\n", argv[i]);
-                i++;
-            }
-        }*/
+        minishell(args, env);
         free(input);
         input = NULL;
         free_tab(args);
         args = NULL;
         ft_printf("minishell$ ");
     }
+    free_tab(env);
+    env = NULL;
     return (0);
 }
 
-void    minishell(char **argv, char **envp)
+void    minishell(char **argv, char **env)
 {
-    (void)argv;
-    (void)envp;
+    if (is_builtin(argv[0]) == 1)
+        do_builtin(argv, env);
 }

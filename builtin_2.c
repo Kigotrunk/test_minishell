@@ -26,12 +26,11 @@ void    builtin_pwd(char **cmd)
     char    *pwd;
 
 	(void)cmd;
-	/*if (cmd[1])
+	if (cmd[1])
 	{
 		write(1, "too many arguments\n", 19);
 		return ;
-	}*/
-
+	}
     	pwd = (char *)malloc(2048 * sizeof(char));
     	pwd = getcwd(pwd, 2048);
     	if (pwd == NULL)
@@ -58,21 +57,19 @@ void	builtin_unset(char **env, char **argv)
 {
 	int		i;
 	int		j;
-	char	*tmp;
 
 	i = 0;
 	j = 1;
-	while (env[i] != NULL)
+	while (env[i])
 	{
-		while (argv[j] != NULL)
-		{
-			tmp = ft_strjoin(argv[j], "=");
-			if (ft_strncmp(env[i], tmp, ft_strlen(tmp)) == 0)
-				env = ft_unset_utils(env, argv[j], i);
-			j++;
-		}
-		j = 1;
-		i++;
+	 	j = 1;
+	 	while (argv[j])
+	 	{
+	 		if(!strncmp(env[i], argv[j], ft_strlen_env(env[i])))
+	 			env = ft_unset_utils(env, argv[j], i);
+	 		j++;
+	 	}
+	 	i++;
 	}
 }
 
@@ -84,16 +81,3 @@ void	builtin_echo(char	**argv)
 	while (argv[i])
 		printf("%s\n", argv[i++]);
 }
-	 /*while (env[i])
-		{
-	 	j = 1;
-	 	while (argv[j])
-	 	{
-	 		if(!strncmp(env[i], argv[j], ft_strlen_env(env[i])))
-	 		{
-	 			env = ft_unset_utils(env, argv[j], i);
-	 		}
-	 		j++;
-	 	}
-	 	i++;
-	 	}*/
