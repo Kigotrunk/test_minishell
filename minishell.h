@@ -39,12 +39,15 @@ void    builtin_cd(const char *path);
 void    builtin_pwd(char **cmd);
 void    builtin_env(char **envp);
 void	builtin_unset(char **env, char **argv);
-void	builtin_echo();
+void	builtin_echo(char **argv);
 
 //ft_utils
 char    **cpy_env(char **envp);
 char	**ft_unset_utils(char **env, char	*var, int index);
 int		ft_strlen_env(char *env);
 void	ft_free_tab(char **tab);
+void    ft_print_echo(char **argv, int index);
+void	ft_putstr_echo(char *str, int i);
+int     ft_is_quote(char *str);
 
 #endif

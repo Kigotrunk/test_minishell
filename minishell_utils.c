@@ -58,3 +58,15 @@ void	ft_free_tab(char **tab)
 	}
 	free(tab);
 }
+
+void	ft_putstr_echo(char *str, int i)
+{
+	int	j;
+	
+	j = 0;
+	while (str[j + i])
+	{
+		write(1, str[j], 1);
+		j++;
+	}
+}

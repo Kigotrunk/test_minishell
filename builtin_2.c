@@ -57,27 +57,19 @@ void	builtin_unset(char **env, char **argv)
 {
 	int		i;
 	int		j;
+	char	*tmp;
 
 	i = 0;
-	j = 1;
 	while (env[i])
 	{
 	 	j = 1;
 	 	while (argv[j])
 	 	{
-	 		if(!strncmp(env[i], argv[j], ft_strlen_env(env[i])))
+			tmp = ft_strjoin(argv[j], "=");
+	 		if(!strncmp(env[i], argv[j], ft_strlen(tmp)))
 	 			env = ft_unset_utils(env, argv[j], i);
 	 		j++;
 	 	}
 	 	i++;
 	}
-}
-
-void	builtin_echo(char	**argv)
-{
-	int	i;
-
-	i = 1;
-	while (argv[i])
-		printf("%s\n", argv[i++]);
 }
