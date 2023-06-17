@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/17 17:53:32 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:27:30 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ int main(int argc, char **argv, char **envp)
             continue ;
         }
         args = split_args(input);
+        //print_tab(args);
         minishell(args, env);
         free(input);
         input = NULL;

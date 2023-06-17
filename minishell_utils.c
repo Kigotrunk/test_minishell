@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/15 23:34:05 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/17 21:11:05 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_putstr_echo(char *str, int i)
 	j = 0;
 	while (str[j + i])
 	{
-		write(1, str[j], 1);
+		printf("%c", str[j + i]);
 		j++;
 	}
 }

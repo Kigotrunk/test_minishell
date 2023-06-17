@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
+#    By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/15 23:25:35 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/17 23:31:04 by kortolan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,11 @@ SRCS     =  main.c \
 			builtin_2.c \
 			new_env.c \
 			minishell_utils.c \
+			builtin_echo.c \
+			parsing1.c \
+			parsing2.c \
+			builtin_parsing_utils.c \
+			
 											
 
 OBJS    = $(SRCS:.c=.o)
