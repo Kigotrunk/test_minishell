@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/15 23:24:29 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:53:32 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void    free_tab(char **tab)
         int     i;
 
         i = 0;
+        if (tab == NULL)
+            return ;
         while (tab[i])
         {
                 free(tab[i]);
@@ -46,19 +48,28 @@ int quote_check(char *str)
     return (b);
 }
 
+int is_ope(char c)
+{
+    if (c == '|' || c == '<' || c =='>')
+        return (1);
+    return (0);
+}
+
 char	*eoa_quote(char *str, char c)
 {
     str++;
 	while (*str != c && *str != '\0')
 		str++;
-	while (*str != ' ' && *str != '\0')
-		str++;
+    if (*str == c)
+        str++;
+	if (*str != ' ' && *str != '\0' && !is_ope(*str))
+		str = eoa_str(str);
 	return (str);
 }
 
 char    *eoa_str(char *str)
 {
-    while (*str != ' ' && *str != '\'' && *str != '\"' && *str)
+    while (*str != ' ' && *str != '\'' && *str != '\"' && *str && !is_ope(*str))
 		str++;
     if (*str == '\'' || *str == '\"')
         str = eoa_quote(str, *str);
@@ -74,9 +85,16 @@ int	arg_c(char *str)
 	{
 		while (*str == ' ')
 			str++;
-        if (*str == '\n')
+        if (*str == '\n' || *str == '\0')
             return (n);
-		if (*str == '\"' || *str == '\'')
+        else if (is_ope(*str))
+        {
+            n++;
+            str++;
+            if (*str == *(str - 1) && (*str == '<' || *str == '>'))
+                str++;
+        }
+		else if (*str == '\"' || *str == '\'')
 		{
 			n++;
 			str = eoa_quote(str, *str);
@@ -93,22 +111,19 @@ int	arg_c(char *str)
 int arg_len(char *str)
 {
     int     i;
-    char    c;
 
     i = 0;
-    if(str[i] != '\'' && str[i] != '\"')
+    if (*str == '\'' || *str == '\"')
+        i = eoa_quote(str, *str) - str;
+    else if (is_ope(*str))
     {
-        while (str[i] != ' ' && str[i] != '\'' && str[i] != '\"' && str[i])
+        i++;
+        if (*str == *(str + 1) && (*str == '<' || *str == '>'))
             i++;
     }
-    if(str[i] == '\'' || str[i] == '\"')
-    {
-        c = str[i];
-        while(str[i] != c && str[i] != '\0')
-		    i++;
-	    while (str[i] != ' ' && str[i] != '\0')
-            i++;
-    }
+    else
+        i = eoa_str(str) - str;
+    //readline?
     if (str[i - 1] == '\n')
         i--;
     return (i);
@@ -157,6 +172,14 @@ char	**split_args(char *str)
 			str = eoa_quote(str, *str);
 			i++;
 		}
+        else if (is_ope(*str))
+        {
+            tab[i] = get_arg(str);
+            str++;
+            if (*str == *(str - 1) && (*str == '<' || *str == '>'))
+                str++;
+            i++;
+        }
 		else
 		{
 			tab[i] = get_arg(str);
@@ -200,8 +223,23 @@ int main(int argc, char **argv, char **envp)
     return (0);
 }
 
-void    minishell(char **argv, char **env)
+void    print_tab(char **argv)
 {
-    if (is_builtin(argv[0]) == 1)
+    while (*argv)
+    {
+        ft_printf("%s\n", *argv);
+        argv++;
+    }
+}
+
+int    minishell(char **argv, char **env)
+{
+    if (*argv == NULL)
+        return (0);
+    //print_tab(argv);
+    if (is_builtin(argv[0]))
         do_builtin(argv, env);
+    //else
+        //pipex(argv, env);
+    return (0);
 }
