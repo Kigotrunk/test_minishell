@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/18 00:24:47 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:35:19 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_putstr_echo(char *str, int i)
 	j = 0;
 	while (str[j + i])
 	{
-		write(1, str[j], 1);
+		printf("%c", str[j + i]);
 		j++;
 	}
 }

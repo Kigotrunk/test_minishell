@@ -6,7 +6,7 @@
 #    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/17 22:33:51 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/18 00:35:49 by kallegre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ SRCS     =  main.c \
 			builtin_2.c \
 			new_env.c \
 			minishell_utils.c \
+			builtin_echo.c \
+			parsing1.c \
+			parsing2.c \
+			builtin_parsing_utils.c \
 			parser.c \
 											
 
