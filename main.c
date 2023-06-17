@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/17 17:53:32 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/18 00:22:40 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,18 +225,30 @@ int main(int argc, char **argv, char **envp)
 
 void    print_tab(char **argv)
 {
-    while (*argv)
+    int i;
+
+    i = 0;
+    while (argv[i])
     {
-        ft_printf("%s\n", *argv);
-        argv++;
+        ft_printf("%s\n", argv[i]);
+        i++;
     }
 }
 
 int    minishell(char **argv, char **env)
 {
+    char **cmd_tab;
+
     if (*argv == NULL)
         return (0);
+
     //print_tab(argv);
+    
+    cmd_tab = get_cmd_tab(argv);
+    if (cmd_tab == NULL)
+        ft_printf("Format error");
+    print_tab(cmd_tab);
+
     if (is_builtin(argv[0]))
         do_builtin(argv, env);
     //else
