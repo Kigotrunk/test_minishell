@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/19 16:49:56 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:35:58 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <errno.h>
 # include "ft_printf/ft_printf.h"
 # include "get_next_line/get_next_line_bonus.h"
 # include <readline/readline.h>
@@ -24,13 +27,20 @@
 
 void    free_tab(char **tab);
 int     quote_check(char *str);
+int     is_ope(char *str);
+char    *end_ope(char *str);
 int	    arg_c(char *str);
 char	*eoa_quote(char *str, char c);
 char    *eoa_str(char *str);
 int     arg_len(char *str);
 char	*get_arg(char *str);
 char	**split_args(char *str);
-int     minishell(char **argv, char **envp);
+char    **get_cmd_tab(char **argv);
+int     pipe_count(char **argv);
+char    **cmd_tab_init(int n);
+char    *ft_stradd(char *s1, char *s2);
+int     syntax_error(char **argv);
+int    minishell(char **argv, char **envp);
 
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+         #
+#    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/17 23:31:04 by kortolan         ###   ########.fr        #
+#    Updated: 2023/06/19 15:11:26 by kallegre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ SRCS     =  main.c \
 			parsing1.c \
 			parsing2.c \
 			builtin_parsing_utils.c \
-			
+			parser.c \
+			lexer.c \
+			lexer_utils.c \
+			utils.c \
 											
 
 OBJS    = $(SRCS:.c=.o)
