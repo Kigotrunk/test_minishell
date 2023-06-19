@@ -6,7 +6,7 @@
 #    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/19 15:11:26 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/19 17:51:11 by kallegre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS     =  main.c \
 			lexer.c \
 			lexer_utils.c \
 			utils.c \
+			pipex.c \
+			pipex_utils.c \
 											
 
 OBJS    = $(SRCS:.c=.o)

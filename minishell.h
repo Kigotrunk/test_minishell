@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/19 13:14:53 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:56:06 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <readline/history.h>
 
 void    free_tab(char **tab);
+int     tab_size(char **tab);
 int     quote_check(char *str);
 int     is_ope(char *str);
 char    *end_ope(char *str);
@@ -41,6 +42,25 @@ char    **cmd_tab_init(int n);
 char    *ft_stradd(char *s1, char *s2);
 int     syntax_error(char **argv);
 int    minishell(char **argv, char **envp);
+
+typedef struct s_vars
+{
+	int	**fd;
+	int	*pid;
+	int	n;
+}		t_vars;
+
+int	    pipex(char **argv, char **envp);
+char	*pathfinder(char *str, char **envp);
+char	*ft_strjoin2(char const *s1, char const *s2);
+void	cmd(char **argv, char **envp, t_vars va, int k);
+void	close_all(int n, int **fd);
+int		check_errors(int *pid, int n);
+int		exec_cmd(char *argv[], char *envp[], t_vars va);
+void	get_doc(char *argv[], t_vars va);
+int		here_doc(int argc, char *argv[], char *envp[]);
+int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
+void	free_fd(int **fd, int n);
 
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);

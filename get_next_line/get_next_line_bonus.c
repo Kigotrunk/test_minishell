@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:44:15 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/15 17:31:13 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:53:46 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*join_read(char **str, int fd)
 		if (rrv <= 0)
 			break ;
 		buffer[rrv] = '\0';
-		*str = ft_strjoin2(*str, buffer);
+		*str = ft_strjoin_gnl(*str, buffer);
 	}
 	return (buffer);
 }
