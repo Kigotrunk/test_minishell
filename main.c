@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 14:02:57 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:13:26 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int    minishell(char **argv, char **env)
         ft_printf("syntax error\n");
         return (258);
     }
-    print_tab(argv);
+    //print_tab(argv);
 
     cmd_tab = get_cmd_tab(argv);
     if (cmd_tab == NULL)
@@ -64,7 +64,7 @@ int    minishell(char **argv, char **env)
         ft_printf("Format error");
         return (1);
     }
-    print_tab(cmd_tab);
+    //print_tab(cmd_tab);
 
     if (is_builtin(argv[0]))
         do_builtin(argv, env);
