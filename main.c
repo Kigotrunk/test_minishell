@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 17:35:21 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:04:09 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int main(int argc, char **argv, char **envp)
     (void)argc;
     (void)argv;
     env = cpy_env(envp);
-    ft_printf("minishell$ ");
-    while ((input = get_next_line(0)))
+    while ((input = readline("minishell$ ")))
     {
+        if (input == NULL)
+        {
+            exit(1);
+        }
         if (quote_check(input) != 0)
         {
             free(input);
@@ -39,7 +42,6 @@ int main(int argc, char **argv, char **envp)
         input = NULL;
         free_tab(args);
         args = NULL;
-        ft_printf("minishell$ ");
     }
     free_tab(env);
     env = NULL;
