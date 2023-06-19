@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 18:35:49 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:50:55 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ int main(int argc, char **argv, char **envp)
         {
             free(input);
             input = NULL;
-            ft_printf("Error\nminishell$ ");
+            ft_printf("Error\n");
             continue ;
         }
         args = split_args(input);
         args = ft_fix_args(args, env);
-        print_tab(args);
         minishell(args, env);
         free(input);
         input = NULL;
@@ -56,21 +55,15 @@ int    minishell(char **argv, char **env)
         return (0);
     if (syntax_error(argv))
     {
-        ft_printf("syntax error\n");
+        ft_printf("Syntax error\n");
         return (258);
     }
-    //print_tab(argv);
-
     cmd_tab = get_cmd_tab(argv);
     if (cmd_tab == NULL)
     {
         ft_printf("Format error");
         return (1);
     }
-    print_tab(cmd_tab);
-    printf("\n");
-    //if (is_builtin(argv[0]))
-        //do_builtin(argv, env);
     pipex(cmd_tab, env);
     return (0);
 }

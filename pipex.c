@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:58:03 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 18:29:42 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:27:25 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	cmd(char **argv, char **envp, t_vars va, int k)
 	char	**split;
 
 	split = ft_split(argv[k + 3], ' ');
+	if (is_builtin(split[0]))
+	{
+		do_builtin(argv[k + 3]);
+		return ;
+	}
 	path = pathfinder(split[0], envp);
 	if (k == 0 && argv[0][0])
 	{
