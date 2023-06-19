@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:44:15 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/17 22:03:50 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:36:18 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*join_read(char **str, int fd)
 		if (rrv <= 0)
 			break ;
 		buffer[rrv] = '\0';
-		*str = ft_strjoin2(*str, buffer);
+		*str = ft_strjoin_gnl(*str, buffer);
 	}
 	return (buffer);
 }

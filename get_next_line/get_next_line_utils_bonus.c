@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:45:31 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/15 17:28:19 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:52:16 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*cpyline(char *src)
 	return (str);
 }
 
-char	*ft_strjoin2(char *str, char *buffer)
+char	*ft_strjoin_gnl(char *str, char *buffer)
 {
 	char	*new;
 	int		i;

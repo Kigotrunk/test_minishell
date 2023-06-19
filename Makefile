@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+         #
+#    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/19 17:56:58 by kortolan         ###   ########.fr        #
+#    Updated: 2023/06/19 18:34:54 by kallegre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS     =  main.c \
 			lexer.c \
 			lexer_utils.c \
 			utils.c \
+			pipex.c \
+			pipex_utils.c \
 											
 
 OBJS    = $(SRCS:.c=.o)

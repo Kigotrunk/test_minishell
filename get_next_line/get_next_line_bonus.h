@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:42:12 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/15 17:27:56 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:52:26 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			*ft_memcpy(void *dest, const void *src, size_t n);
 char			*r_strcpy(char *src, char *dest);
 char			*zmalloc(size_t n);
 unsigned int	ft_strlen(const char *str);
-char			*ft_strjoin2(char *s1, char *s2);
+char			*ft_strjoin_gnl(char *s1, char *s2);
 char			*reste(char *src);
 char			*cpyline(char *src);
 

@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:01:12 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 15:08:16 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:37:16 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ char    **get_cmd_tab(char **argv)
             if (!argv[i + 1])
                 return (NULL);
             if (argv[i][0] == '<')
-                cmd_tab[0] = (free(cmd_tab[0]), ft_strjoin(argv[i], argv[i + 1]));
+                cmd_tab[0] = ft_strjoin(argv[i], argv[i + 1]);
             if (argv[i][0] == '>')
                 cmd_tab[1] = ft_strjoin(argv[i], argv[i + 1]);
-            if (argv[i][0] == '2' && argv[i][0] == '>')
+            if (argv[i][0] == '2' && argv[i][1] == '>')
                 cmd_tab[2] = ft_strjoin(argv[i], argv[i + 1]);
             i += 2;
         }
@@ -97,8 +97,8 @@ char    **cmd_tab_init(int n)
     i = 0;
     while (i < 3)
     {
-        cmd_tab[i] = malloc(8);
-        cmd_tab[i] = "default";
+        cmd_tab[i] = malloc(1);
+        cmd_tab[i][0] = '\0';
         i++;
     }
     while(i < n)
