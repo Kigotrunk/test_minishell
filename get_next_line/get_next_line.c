@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 09:07:14 by kallegre          #+#    #+#             */
-/*   Updated: 2022/12/06 16:45:20 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:30:08 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ unsigned int	ft_strlen(const char *str)
 	unsigned int	i;
 
 	if (str == NULL)
+		return (0);
+	if (!str)
 		return (0);
 	i = 0;
 	while (str[i])

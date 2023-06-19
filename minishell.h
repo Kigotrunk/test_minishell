@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/17 23:33:35 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:49:56 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_is_dollars(char *arg, int in_quote, int i, char **env);
 char	*ft_dollars(int *n, char *arg, int i, char **env);
 int		ft_is_space(char c);
 char	*ft_size_var(int j, int *n, char **env);
-char	*ft_str_add(char *tmp, char c);
+char	*ft_str_add(char *str, char c);
 int 	ft_is_quote(char c);
 void    print_tab(char **argv);
 
