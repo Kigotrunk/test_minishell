@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/18 00:34:41 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:14:53 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 
 void    free_tab(char **tab);
 int     quote_check(char *str);
-int     is_ope(char c);
+int     is_ope(char *str);
+char    *end_ope(char *str);
 int	    arg_c(char *str);
 char	*eoa_quote(char *str, char c);
 char    *eoa_str(char *str);
@@ -38,6 +39,7 @@ char    **get_cmd_tab(char **argv);
 int     pipe_count(char **argv);
 char    **cmd_tab_init(int n);
 char    *ft_stradd(char *s1, char *s2);
+int     syntax_error(char **argv);
 int    minishell(char **argv, char **envp);
 
 //is_builtin && called ft_builtins

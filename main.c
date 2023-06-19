@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/18 00:35:05 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:21:43 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,35 @@ int quote_check(char *str)
     return (b);
 }
 
-int is_ope(char c)
+int is_ope(char *str)
 {
-    if (c == '|' || c == '<' || c =='>')
+    if (*str == '|' || *str == '<' || *str=='>')
         return (1);
+    else 
+    {
+        while (ft_isdigit(*str))
+            str++;
+        if (*str == '<' || *str == '>')
+            return (1);
+    }
     return (0);
+}
+
+char    *end_ope(char *str)
+{
+    if (str[0] == '|')
+        return (str + 1);
+    else if (str[0] == '<' || str[0] == '>')
+    {
+        if (str[0] == str[1] || str[1] == '|')
+            return (str + 2);
+        else
+            return (str + 1);
+    }
+    else
+        while (ft_isdigit(*str))
+            str++;
+        return (str + 1);
 }
 
 char	*eoa_quote(char *str, char c)
@@ -62,14 +86,14 @@ char	*eoa_quote(char *str, char c)
 		str++;
     if (*str == c)
         str++;
-	if (*str != ' ' && *str != '\0' && !is_ope(*str))
+	if (*str != ' ' && *str != '\0' && !is_ope(str))
 		str = eoa_str(str);
 	return (str);
 }
 
 char    *eoa_str(char *str)
 {
-    while (*str != ' ' && *str != '\'' && *str != '\"' && *str && !is_ope(*str))
+    while (*str != ' ' && *str != '\'' && *str != '\"' && *str && !is_ope(str))
 		str++;
     if (*str == '\'' || *str == '\"')
         str = eoa_quote(str, *str);
@@ -87,12 +111,10 @@ int	arg_c(char *str)
 			str++;
         if (*str == '\n' || *str == '\0')
             return (n);
-        else if (is_ope(*str))
+        else if (is_ope(str))
         {
             n++;
-            str++;
-            if (*str == *(str - 1) && (*str == '<' || *str == '>'))
-                str++;
+            str = end_ope(str);
         }
 		else if (*str == '\"' || *str == '\'')
 		{
@@ -115,12 +137,8 @@ int arg_len(char *str)
     i = 0;
     if (*str == '\'' || *str == '\"')
         i = eoa_quote(str, *str) - str;
-    else if (is_ope(*str))
-    {
-        i++;
-        if (*str == *(str + 1) && (*str == '<' || *str == '>'))
-            i++;
-    }
+    else if (is_ope(str))
+        i = end_ope(str) - str;
     else
         i = eoa_str(str) - str;
     //readline?
@@ -172,12 +190,10 @@ char	**split_args(char *str)
 			str = eoa_quote(str, *str);
 			i++;
 		}
-        else if (is_ope(*str))
+        else if (is_ope(str))
         {
             tab[i] = get_arg(str);
-            str++;
-            if (*str == *(str - 1) && (*str == '<' || *str == '>'))
-                str++;
+            str = end_ope(str);
             i++;
         }
 		else
@@ -240,14 +256,21 @@ int    minishell(char **argv, char **env)
 {
     char **cmd_tab;
 
-    if (*argv == NULL)
+    if (argv == NULL)
         return (0);
+    if (syntax_error(argv))
+    {
+        ft_printf("syntax error\n");
+        return (258);
+    }
+    print_tab(argv);
 
-    //print_tab(argv);
-    
     cmd_tab = get_cmd_tab(argv);
     if (cmd_tab == NULL)
+    {
         ft_printf("Format error");
+        return (1);
+    }
     print_tab(cmd_tab);
 
     if (is_builtin(argv[0]))

@@ -1,5 +1,23 @@
 #include "minishell.h"
 
+int     syntax_error(char **argv)
+{
+    int i;
+
+    i = 0;
+    if (argv[0][0] == '|')
+        return (1);
+    while(argv[i + 1])
+    {
+        if (is_ope(argv[i]) && is_ope(argv[i + 1]))
+            return (1);
+        i++;
+    }
+    if (argv[i][0] == '|')
+        return (1);
+    return (0);
+}
+
 int     pipe_count(char **argv)
 {
     int n;
@@ -27,7 +45,9 @@ char    **get_cmd_tab(char **argv)
     k = 3;
     while (argv[i])
     {
-        if (is_ope(argv[i][0]))
+        if (argv[i][0] == '|')
+            i++;
+        else if (is_ope(argv[i]))
         {
             if (!argv[i + 1])
                 return (NULL);
@@ -35,18 +55,22 @@ char    **get_cmd_tab(char **argv)
                 cmd_tab[0] = ft_strjoin(argv[i], argv[i + 1]);
             if (argv[i][0] == '>')
                 cmd_tab[1] = ft_strjoin(argv[i], argv[i + 1]);
-            //if (argv[i][0] == '2>')
-            i++;
+            if (argv[i][0] == '2' && argv[i][0] == '>')
+                cmd_tab[2] = ft_strjoin(argv[i], argv[i + 1]);
+            i += 2;
         }
-        while (argv[i] && !is_ope(argv[i][0]))
+        else
         {
-            if (cmd_tab[k] == NULL)
+            while (argv[i] && !is_ope(argv[i]))
+            {
+                if (cmd_tab[k] == NULL)
                     cmd_tab[k] = argv[i];
-            else
-                cmd_tab[k] = ft_stradd(cmd_tab[k], argv[i]);
-            i++;
+                else
+                    cmd_tab[k] = ft_stradd(cmd_tab[k], argv[i]);
+                i++;
+            }
+            k++;
         }
-        k++;
     }
     cmd_tab[k] = NULL;
     return (cmd_tab);
