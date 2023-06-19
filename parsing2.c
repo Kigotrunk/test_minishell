@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 21:45:07 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/17 23:14:47 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:09:24 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_size_var(int j, int *n, char **env)
 	char	*new_str;
 	int	i;
 	
+	new_str = ft_strdup("");
 	i = 0;
 	while (env[j][i] != '=')
 		i++;

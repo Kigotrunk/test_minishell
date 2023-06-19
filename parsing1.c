@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/18 00:22:09 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:14:53 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,28 @@ char	**ft_fix_args(char **args, char **env)
 
 char	*ft_str_replace(char *arg, int *in_quote, char **env)
 {
-	char	*new_str;
+	char	*autrement;
 	
-	ft_printf("in_str_replace\n");
 	if (!arg)
 		return (NULL);
-	new_str = ft_size(arg, in_quote, env);
-	return (new_str);
+	autrement = ft_size(arg, in_quote, env);
+	return (autrement);
+}
+
+char	*ft_str_add(char *str, char c)
+{
+	char	*add_str;
+	char	*str2;
+
+	str2 = malloc(sizeof(char) * 2);
+	str2[0] = c;
+	str2[1] = '\0';
+	if (!str)
+		str = ft_strdup("");
+	add_str = ft_strdup(str);
+	add_str = ft_strjoin(add_str, str2);
+	free(str);
+	return (add_str);
 }
 
 char	*ft_size(char *arg, int	*in_quote, char **env)
@@ -47,6 +62,7 @@ char	*ft_size(char *arg, int	*in_quote, char **env)
 	ft_printf("in_ft_size\n");
 	n = 0;
 	i = 0;
+	new_str = ft_strdup("");
 	while (arg[i])
 	{
 		if (arg[i] != '\'' && arg[i] != '\"' && arg[i] != '$')
@@ -60,7 +76,11 @@ char	*ft_size(char *arg, int	*in_quote, char **env)
 		else if (arg[i] == '\"' && *in_quote == 1)
 			new_str = ft_str_add(new_str, arg[i]);
 		else if (arg[i] == '$')
+		{
 			new_str = ft_strjoin(new_str, ft_is_dollars(arg, *in_quote, i, env));
+			while (!ft_is_space(arg[i + 1]) && !ft_is_quote(arg[i + 1]) && *in_quote != 1)
+				i++;
+		}
 		i++;
 	}
 	return (new_str);
@@ -87,8 +107,9 @@ char	*ft_dollars(int *n, char *arg, int i, char **env)
 	char	*new_str;
 	int		j;
 
+	tmp = ft_strdup("");
 	ft_printf("in_ft_dollars\n");
-	if (!arg[i + 1] || ft_is_space(arg[i + 1]) == 1)
+	if (!arg[i + 1] || ft_is_space(arg[i + 1]) == 1 || ft_is_quote(arg[i + 1]))
 		return ("$");
 	i++;
 	j = 0;
@@ -104,21 +125,16 @@ char	*ft_dollars(int *n, char *arg, int i, char **env)
 		i++;	
 	}
 	ft_printf("test999\n");
-		int o = 0;
-	while (env[o])
-		ft_printf("%s\n", env[o++]);
 	while (env[j])
 	{
-		if(!strncmp(tmp, env[j], ft_strlen(tmp)))
+		if(strncmp(tmp, env[j], ft_strlen(tmp)) == 0)
 		{
-			ft_printf("found_PATH\n");
-			new_str = ft_size_var(j, n, env);
+			new_str = ft_strdup(ft_size_var(j, n, env));
 			return (new_str);
 		}
 		j++;	
 	}
-	ft_printf("end_ft_dollars");
 	if (tmp)
 		free(tmp);
-	return ("");	
+	return ("\n");	
 }

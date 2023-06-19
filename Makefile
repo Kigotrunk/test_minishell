@@ -6,7 +6,7 @@
 #    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/19 17:51:11 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/19 18:34:54 by kallegre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ NAME = minishell
 all:    $(NAME)
 
 $(NAME):    $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -lreadline -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/readline/include -o $(NAME) $(LIBFT)
 
 $(LIBFT):
 	make -C ft_printf
