@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/19 17:14:53 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:07:24 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**ft_fix_args(char **args, char **env)
 {
 	int	in_quote; 
 	int	i;
-	ft_printf("in_fix_args\n");
+	
 	in_quote = 0;
 	i = 0;
 	while (args[i])
@@ -59,7 +59,6 @@ char	*ft_size(char *arg, int	*in_quote, char **env)
 	int	i;
 	char	*new_str;
 
-	ft_printf("in_ft_size\n");
 	n = 0;
 	i = 0;
 	new_str = ft_strdup("");
@@ -91,7 +90,6 @@ char	*ft_is_dollars(char *arg, int in_quote, int i, char **env)
 	char	*new_str;
 	int	n;
 
-	ft_printf("in_ft_is_dollars\n");
 	n = 0;
 	if (in_quote != 1)
 	{
@@ -108,7 +106,6 @@ char	*ft_dollars(int *n, char *arg, int i, char **env)
 	int		j;
 
 	tmp = ft_strdup("");
-	ft_printf("in_ft_dollars\n");
 	if (!arg[i + 1] || ft_is_space(arg[i + 1]) == 1 || ft_is_quote(arg[i + 1]))
 		return ("$");
 	i++;
@@ -116,15 +113,12 @@ char	*ft_dollars(int *n, char *arg, int i, char **env)
 	while (arg[i])
 	{
 		if (!ft_is_space(arg[i]) && !ft_is_quote(arg[i]))
-		{
 			tmp = ft_str_add(tmp, arg[i]);
-			ft_printf("add_PATH\n");
-		}
+		
 		else
 			break;
 		i++;	
 	}
-	ft_printf("test999\n");
 	while (env[j])
 	{
 		if(strncmp(tmp, env[j], ft_strlen(tmp)) == 0)

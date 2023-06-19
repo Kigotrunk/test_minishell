@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 18:04:09 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:21:12 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int main(int argc, char **argv, char **envp)
     while ((input = readline("minishell$ ")))
     {
         if (input == NULL)
-        {
             exit(1);
-        }
+        add_history(input); 
         if (quote_check(input) != 0)
         {
             free(input);
@@ -34,14 +33,17 @@ int main(int argc, char **argv, char **envp)
             ft_printf("Error\nminishell$ ");
             continue ;
         }
-        args = split_args(input);
-        args = ft_fix_args(args, env);
-        print_tab(args);
-        minishell(args, env);
-        free(input);
-        input = NULL;
-        free_tab(args);
-        args = NULL;
+        if(input[0] != '\0')
+        {
+            args = split_args(input);
+            args = ft_fix_args(args, env);
+            //print_tab(args);
+            minishell(args, env);
+            free(input);
+            input = NULL;
+            free_tab(args);
+            args = NULL;
+        }
     }
     free_tab(env);
     env = NULL;
