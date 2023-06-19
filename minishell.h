@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/19 18:35:11 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:18:17 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void    builtin_cd(const char *path);
 void    builtin_pwd(char **cmd);
 void    builtin_env(char **envp);
 void	builtin_unset(char **env, char **argv);
+char    *ft_str_lower(char *cmd);
 
 
 //ft_builtin_echo
