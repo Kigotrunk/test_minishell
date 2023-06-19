@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/19 15:01:12 by kallegre          #+#    #+#             */
+/*   Updated: 2023/06/19 15:08:16 by kallegre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int     syntax_error(char **argv)
@@ -52,7 +64,7 @@ char    **get_cmd_tab(char **argv)
             if (!argv[i + 1])
                 return (NULL);
             if (argv[i][0] == '<')
-                cmd_tab[0] = ft_strjoin(argv[i], argv[i + 1]);
+                cmd_tab[0] = (free(cmd_tab[0]), ft_strjoin(argv[i], argv[i + 1]));
             if (argv[i][0] == '>')
                 cmd_tab[1] = ft_strjoin(argv[i], argv[i + 1]);
             if (argv[i][0] == '2' && argv[i][0] == '>')
