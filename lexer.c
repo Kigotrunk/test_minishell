@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:55:47 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 13:57:12 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 18:17:36 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ char	**split_args(char *str)
 	char	**tab;
 	int		ac;
 	int		i;
-
 	ac = arg_c(str);
     if (ac == 0)
         return (NULL);
