@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/19 20:18:17 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:55:22 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void number_quote (char **argv, int index, int *count_s_quote, int *count_d_quot
 
 //ft_utils
 char    **cpy_env(char **envp);
-char	**ft_unset_utils(char **env, char	*var, int index);
+void	ft_unset_utils(char ***env, char	*var, int index);
 int		ft_strlen_env(char *env);
 void	ft_free_tab(char **tab);
 void    ft_print_echo(char **argv, int index);

@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/19 18:07:24 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:20:17 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,6 @@ char	*ft_str_replace(char *arg, int *in_quote, char **env)
 		return (NULL);
 	autrement = ft_size(arg, in_quote, env);
 	return (autrement);
-}
-
-char	*ft_str_add(char *str, char c)
-{
-	char	*add_str;
-	char	*str2;
-
-	str2 = malloc(sizeof(char) * 2);
-	str2[0] = c;
-	str2[1] = '\0';
-	if (!str)
-		str = ft_strdup("");
-	add_str = ft_strdup(str);
-	add_str = ft_strjoin(add_str, str2);
-	free(str);
-	return (add_str);
 }
 
 char	*ft_size(char *arg, int	*in_quote, char **env)
@@ -130,5 +114,5 @@ char	*ft_dollars(int *n, char *arg, int i, char **env)
 	}
 	if (tmp)
 		free(tmp);
-	return ("\n");	
+	return ("");	
 }

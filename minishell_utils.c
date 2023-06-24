@@ -3,38 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/18 00:35:19 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:14:06 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char **ft_unset_utils(char **env, char	*var, int index)
-{
-	char **new_env;
-	int	i;
-	int	x;
 
-	i = 0;
-	x = 0;
-	(void)var;
-	while(env[i])
-		i++;
-	new_env = malloc(i * sizeof(char *));
-	i = 0;
-	while (env[i])
-	{
-		if (i != index)
-			new_env[x++] = ft_strdup(env[i]);
-		i++;
-	}
-	new_env[x] = NULL;
-	//ft_free_tab(env);
-	return (new_env);
-}
 
 int	ft_strlen_env(char *env)
 {

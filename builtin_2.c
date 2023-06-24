@@ -52,24 +52,3 @@ void    builtin_env(char **env)
 		x++;
 	}
 }
-
-void	builtin_unset(char **env, char **argv)
-{
-	int		i;
-	int		j;
-	char	*tmp;
-
-	i = 0;
-	while (env[i])
-	{
-	 	j = 1;
-	 	while (argv[j])
-	 	{
-			tmp = ft_strjoin(argv[j], "=");
-	 		if(!strncmp(env[i], argv[j], ft_strlen(tmp)))
-	 			env = ft_unset_utils(env, argv[j], i);
-	 		j++;
-	 	}
-	 	i++;
-	}
-}

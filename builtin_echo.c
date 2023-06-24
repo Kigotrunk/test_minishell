@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 01:34:54 by marvin            #+#    #+#             */
-/*   Updated: 2023/06/19 19:57:52 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:42:43 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	builtin_echo(char **argv)
 	if (!argv[1])
 		return ;
 	ft_print_echo(argv, i);
+	ft_printf("%c", '\n');
 }
 
 
