@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 19:38:19 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:30:50 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int main(int argc, char **argv, char **envp)
 {
-    char *input;
-    char **args;
-    char **env;
+    char    *input;
+    char    **args;
+    t_env   *env;
 
     (void)argc;
     (void)argv;
-    env = cpy_env(envp);
+    cpy_env(&env, envp);
     while ((input = readline("minishell$ ")))
     {
         if (input == NULL)
@@ -44,8 +44,6 @@ int main(int argc, char **argv, char **envp)
             args = NULL;
         }
     }
-    free_tab(env);
-    env = NULL;
     return (0);
 }
 

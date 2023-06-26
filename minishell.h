@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/23 14:55:22 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:30:27 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-// 
+ 
 void    free_tab(char **tab);
 int     tab_size(char **tab);
 int     quote_check(char *str);
@@ -51,6 +51,16 @@ typedef struct s_vars
 	int	n;
 }		t_vars;
 
+typedef struct s_env
+{
+	char			*e;
+	struct s_env	*next;
+}	t_env;
+
+t_env	*lstnew(char *content, t_env *next);
+t_env	*ft_lstlast(t_env *lst);
+void	ft_lstadd_back(t_env **lst, t_env *new);
+int	ft_lst_size(t_env *lst);
 int	    pipex(char **argv, char **envp);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
@@ -65,13 +75,13 @@ void	free_fd(int **fd, int n);
 
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);
-void    do_builtin(char **cmd, char **env);
+void    do_builtin(char **cmd, t_env **env);
 
 //ft_builtin
 void    builtin_cd(const char *path);
 void    builtin_pwd(char **cmd);
-void    builtin_env(char **envp);
-void	builtin_unset(char **env, char **argv);
+void    builtin_env(t_env *envp);
+void	builtin_unset(t_env *env, char **argv);
 char    *ft_str_lower(char *cmd);
 
 
@@ -84,8 +94,8 @@ void number_quote (char **argv, int index, int *count_s_quote, int *count_d_quot
 
 
 //ft_utils
-char    **cpy_env(char **envp);
-void	ft_unset_utils(char ***env, char	*var, int index);
+char    **cpy_env(t_env **envp, char **envp);
+void	ft_unset_utils(char **env, char	*var, int index);
 int		ft_strlen_env(char *env);
 void	ft_free_tab(char **tab);
 void    ft_print_echo(char **argv, int index);

@@ -6,13 +6,11 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/20 15:14:06 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:01:03 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 int	ft_strlen_env(char *env)
 {
@@ -47,4 +45,54 @@ void	ft_putstr_echo(char *str, int i)
 		printf("%c", str[j + i]);
 		j++;
 	}
+}
+
+t_env	*lstnew(char *content, t_env *next)
+{
+	t_env	*lst;
+
+	lst = malloc(sizeof(t_env));
+	if (!lst)
+		return (NULL);
+	lst->e = content;
+	lst->next = next;
+	return (lst);
+}
+
+t_env	*ft_lstlast(t_env *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+void	ft_lstadd_back(t_env **lst, t_env *new)
+{
+	t_env	*lstb;
+
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	lstb = ft_lstlast(*lst);
+	lstb->next = new;
+	new->next = NULL;
+}
+
+int	ft_lst_size(t_env *lst)
+{
+	int	size;
+
+	if (!lst)
+		error();
+	size = 0;
+	while (lst)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
 }

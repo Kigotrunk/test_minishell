@@ -6,13 +6,13 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:13:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/23 14:55:06 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:28:20 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_unset(char **env, char **argv)
+/*void	builtin_unset(char **env, char **argv)
 {
 	int		i;
 	int		j;
@@ -26,7 +26,9 @@ void	builtin_unset(char **env, char **argv)
 	 	{
 			tmp = ft_strjoin(argv[j], "=");
 	 		if(!strncmp(env[i], tmp, ft_strlen(tmp)))
-	 			ft_unset_utils(&env, argv[j], i);
+			{
+	 			ft_unset_utils(env, argv[j], i);
+			}
 	 		j++;
 	 	}
 		
@@ -35,7 +37,7 @@ void	builtin_unset(char **env, char **argv)
 	free(tmp);
 }
 
-void	ft_unset_utils(char ***env, char	*var, int index)
+void	ft_unset_utils(char **env, char	*var, int index)
 {
 	char **new_env;
 	int	i;
@@ -44,21 +46,23 @@ void	ft_unset_utils(char ***env, char	*var, int index)
 	i = 0;
 	x = 0;
 	(void)var;
-	while((*env)[i])
+	ft_printf("in_builtin\n");
+	while((env)[i])
 		i++;
 	new_env = malloc(i * sizeof(char *));
 	i = 0;
-	while ((*env)[i])
+	while ((env)[i])
 	{
 		if (i != index)
-			new_env[x++] = (*env)[i];
+			new_env[x++] = (env[i]);
 		i++;
 	}
 	new_env[x] = NULL;
-	free((*env)[index]);
-	free(*env);
-	(*env) = new_env;
 	int o = 0;
-	while((*env)[o])
-		ft_printf("%s\n", (*env)[o++]);
-}
+	while (new_env[o])
+		ft_printf("%s\n", new_env[o++]);
+	//env = NULL;
+	//env = new_env;
+	env[0] = "yorifgne";
+	//free(env);
+}*/
