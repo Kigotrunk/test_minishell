@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/27 18:01:08 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:00:46 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_vars
 
 typedef struct s_env
 {
-	char			*e;
+	char			*str;
 	struct s_env	*next;
 }	t_env;
  
@@ -59,13 +59,14 @@ int    minishell(char **argv, t_env **envp);
 t_env	*lstnew(char *content, t_env *next);
 t_env	*ft_lstlast1(t_env *lst);
 int	ft_lst_size(t_env *lst);
-int	    pipex(char **argv, t_env **envp);
+int	    pipex(char **argv, t_env **env);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
 void	cmd(char **argv, char **envp, t_vars va, int k);
 void	close_all(int n, int **fd);
 int		check_errors(int *pid, int n);
-int		exec_cmd(char *argv[], char *envp[], t_vars va);
+char    **get_tab_env(t_env *lst);
+int		exec_cmd(char *argv[], t_env *env, t_vars va);
 void	get_doc(char *argv[], t_vars va);
 int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);

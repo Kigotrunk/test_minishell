@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/27 18:02:37 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:02:41 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_env	*lstnew(char *content, t_env *next)
 	lst = malloc(sizeof(t_env));
 	if (!lst)
 		return (NULL);
-	lst->e = content;
+	lst->str = content;
 	lst->next = next;
 	return (lst);
 }

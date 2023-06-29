@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 15:38:27 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:43:21 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv, char **envp)
     {
         if (input == NULL)
         {
-            free_tab(env);
+            //free_tab(env);
             exit(1);
         }
         add_history(input); 
@@ -70,6 +70,6 @@ int    minishell(char **argv, t_env **env)
     }
     print_tab(cmd_tab);
     free_tab(cmd_tab);
-    //pipex(cmd_tab, env);
+    pipex(cmd_tab, env);
     return (0);
 }
