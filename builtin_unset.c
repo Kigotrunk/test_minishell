@@ -6,13 +6,13 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:13:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/26 08:28:20 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:50:02 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*void	builtin_unset(char **env, char **argv)
+/*void	builtin_unset(t_env **env, char **argv)
 {
 	int		i;
 	int		j;
@@ -37,7 +37,7 @@
 	free(tmp);
 }
 
-void	ft_unset_utils(char **env, char	*var, int index)
+void	ft_unset_utils(t_env **env, char	*var, int index)
 {
 	char **new_env;
 	int	i;

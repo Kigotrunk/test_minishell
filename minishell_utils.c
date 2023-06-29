@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/26 08:01:03 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:02:37 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_env	*lstnew(char *content, t_env *next)
 	return (lst);
 }
 
-t_env	*ft_lstlast(t_env *lst)
+t_env	*ft_lstlast1(t_env *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -68,26 +68,13 @@ t_env	*ft_lstlast(t_env *lst)
 	return (lst);
 }
 
-void	ft_lstadd_back(t_env **lst, t_env *new)
-{
-	t_env	*lstb;
-
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	lstb = ft_lstlast(*lst);
-	lstb->next = new;
-	new->next = NULL;
-}
 
 int	ft_lst_size(t_env *lst)
 {
 	int	size;
 
 	if (!lst)
-		error();
+		return(0);
 	size = 0;
 	while (lst)
 	{

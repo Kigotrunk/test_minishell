@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/26 08:30:27 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:01:08 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+typedef struct s_vars
+{
+	int	**fd;
+	int	*pid;
+	int	n;
+}		t_vars;
+
+typedef struct s_env
+{
+	char			*e;
+	struct s_env	*next;
+}	t_env;
  
 void    free_tab(char **tab);
 int     tab_size(char **tab);
@@ -42,26 +54,12 @@ int     pipe_count(char **argv);
 char    **cmd_tab_init(int n);
 char    *ft_stradd(char *s1, char *s2);
 int     syntax_error(char **argv);
-int    minishell(char **argv, char **envp);
-
-typedef struct s_vars
-{
-	int	**fd;
-	int	*pid;
-	int	n;
-}		t_vars;
-
-typedef struct s_env
-{
-	char			*e;
-	struct s_env	*next;
-}	t_env;
+int    minishell(char **argv, t_env **envp);
 
 t_env	*lstnew(char *content, t_env *next);
-t_env	*ft_lstlast(t_env *lst);
-void	ft_lstadd_back(t_env **lst, t_env *new);
+t_env	*ft_lstlast1(t_env *lst);
 int	ft_lst_size(t_env *lst);
-int	    pipex(char **argv, char **envp);
+int	    pipex(char **argv, t_env **envp);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
 void	cmd(char **argv, char **envp, t_vars va, int k);
@@ -94,7 +92,7 @@ void number_quote (char **argv, int index, int *count_s_quote, int *count_d_quot
 
 
 //ft_utils
-char    **cpy_env(t_env **envp, char **envp);
+void	cpy_env(t_env **env, char **envp);
 void	ft_unset_utils(char **env, char	*var, int index);
 int		ft_strlen_env(char *env);
 void	ft_free_tab(char **tab);
@@ -102,13 +100,12 @@ void    ft_print_echo(char **argv, int index);
 void	ft_putstr_echo(char *str, int i); 
 
 //parsing without quote and $
-char	**ft_fix_args(char **args, char **env);
-char	*ft_str_replace(char *arg, int *in_quote, char **env);
-char	*ft_size(char *arg, int	*in_quote, char **env);
-char	*ft_is_dollars(char *arg, int in_quote, int i, char **env);
-char	*ft_dollars(int *n, char *arg, int i, char **env);
+char	**ft_fix_args(char **args, t_env **env);
+char	*ft_str_replace(char *arg, int *in_quote, t_env **env);
+char	*ft_size(char *arg, int	*in_quote, t_env **env);
+char	*ft_is_dollars(char *arg, int in_quote, int i, t_env **env);
+char	*ft_dollars(int *n, char *arg, int i, t_env **env);
 int		ft_is_space(char c);
-char	*ft_size_var(int j, int *n, char **env);
 char	*ft_str_add(char *str, char c);
 int 	ft_is_quote(char c);
 void    print_tab(char **argv);

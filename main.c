@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/26 08:30:50 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:55:23 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int main(int argc, char **argv, char **envp)
         if(input[0] != '\0')
         {
             args = split_args(input);
-            args = ft_fix_args(args, env);
-            minishell(args, env);
+            args = ft_fix_args(args, &env);
+            minishell(args, &env);
             free(input);
             input = NULL;
             free_tab(args);
@@ -47,7 +47,7 @@ int main(int argc, char **argv, char **envp)
     return (0);
 }
 
-int    minishell(char **argv, char **env)
+int    minishell(char **argv, t_env **env)
 {
     char **cmd_tab;
 

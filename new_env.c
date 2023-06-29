@@ -12,9 +12,8 @@
 
 #include "minishell.h"
 
-t_env   **cpy_env(t_env **env, char **envp)
+void   cpy_env(t_env **env, char **envp)
 {
-    t_env   **cpy;
     int     i;
     int     j;
 
@@ -24,12 +23,13 @@ t_env   **cpy_env(t_env **env, char **envp)
         j++;
     while (i < j)
     {
-        *cpy = lstnew(env[i], *cpy);
+        *env = lstnew(envp[i], *env);
         i++;
     }
-    if (!cpy)
+    if (!env)
     {
         perror("malloc env : ");
         exit(-1);
     }
+    return ;
 }
