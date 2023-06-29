@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 15:43:01 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:11:56 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv, char **envp)
     {
         if (input == NULL)
         {
-            //free_tab(env);
+            ////free_tab(env);
             exit(1);
         }
         add_history(input); 

@@ -6,11 +6,27 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:58:39 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 20:10:13 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:00:18 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char    **get_tab_env(t_env *lst)
+{
+    char    **env;
+    int     i;
+    
+    i = 0;
+    env = (char **)malloc((ft_lst_size(lst) + 1) * sizeof(char *));
+    while (lst)
+    {
+        env[i] = ft_strdup(lst->str);
+        i++;
+        lst = lst->next;
+    }
+    return (env);
+}
 
 void    free_tab(char **tab)
 {

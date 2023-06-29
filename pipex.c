@@ -6,13 +6,13 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:58:03 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 15:57:09 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:09:52 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	pipex(char **argv, t_env **envp)
+int	pipex(char **argv, t_env **env)
 {
 	t_vars	va;
 	int		i;
@@ -33,14 +33,16 @@ int	pipex(char **argv, t_env **envp)
 		i++;
 	}
 	va.pid = (int *)malloc(sizeof(int) * va.n);
-	return (exec_cmd(argv, envp, va));
+	return (exec_cmd(argv, *env, va));
 }
 
-int	exec_cmd(char *argv[], char *envp[], t_vars va)
+int	exec_cmd(char *argv[], t_env *env, t_vars va)
 {
-	int	i;
+	int		i;
+	char	**envp;
 
 	i = 0;
+	envp = get_tab_env(env);
 	while (i < va.n)
 	{
 		va.pid[i] = fork();
@@ -50,6 +52,7 @@ int	exec_cmd(char *argv[], char *envp[], t_vars va)
 			cmd(argv, envp, va, i);
 		i++;
 	}
+	free_tab(envp);
 	close_all(va.n, va.fd);
 	free_fd(va.fd, va.n);
 	return (check_errors(va.pid, va.n));
