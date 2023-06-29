@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 19:38:19 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:03:16 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int main(int argc, char **argv, char **envp)
     while ((input = readline("minishell$ ")))
     {
         if (input == NULL)
+        {
+            free_tab(env);
             exit(1);
+        }
         add_history(input); 
         if (quote_check(input) != 0)
         {
@@ -45,7 +48,6 @@ int main(int argc, char **argv, char **envp)
         }
     }
     free_tab(env);
-    env = NULL;
     return (0);
 }
 
@@ -66,6 +68,9 @@ int    minishell(char **argv, char **env)
         ft_printf("Format error");
         return (1);
     }
-    pipex(cmd_tab, env);
+    print_tab(cmd_tab);
+    free_tab(cmd_tab);
+    (void)env;
+    //pipex(cmd_tab, env);
     return (0);
 }

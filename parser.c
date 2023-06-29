@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:01:12 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 16:37:16 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 20:16:45 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char    **get_cmd_tab(char **argv)
     int     i;
     int     k;
 
-    cmd_tab = cmd_tab_init(pipe_count(argv) + 4);
+    cmd_tab = cmd_tab_init(pipe_count(argv) + 5);
     i = 0;
     k = 3;
     while (argv[i])
@@ -76,9 +76,10 @@ char    **get_cmd_tab(char **argv)
             while (argv[i] && !is_ope(argv[i]))
             {
                 if (cmd_tab[k] == NULL)
-                    cmd_tab[k] = argv[i];
+                    cmd_tab[k] = ft_strdup(argv[i]);
                 else
                     cmd_tab[k] = ft_stradd(cmd_tab[k], argv[i]);
+                ft_printf("cmd_tab[%d] = %p\n", k, &cmd_tab[k]);
                 i++;
             }
             k++;
@@ -94,11 +95,13 @@ char    **cmd_tab_init(int n)
     int     i;
 
     cmd_tab = (char **)malloc(n * sizeof(char *));
+    ft_printf("cmd_tab = %p\n", &cmd_tab);
     i = 0;
     while (i < 3)
     {
         cmd_tab[i] = malloc(1);
         cmd_tab[i][0] = '\0';
+        ft_printf("cmd_tab[%d] = %p\n", i, &cmd_tab[i]);
         i++;
     }
     while(i < n)

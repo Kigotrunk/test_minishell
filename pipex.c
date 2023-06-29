@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:58:03 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 19:42:48 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:59:47 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	pipex(char **argv, char **envp)
 	t_vars	va;
 	int		i;
 
-	/*if (ft_strncmp(argv[1], "here_doc", 8) == 0)
-		return (here_doc(argc, argv, envp));
-	if (access(argv[1], F_OK) == -1)
+	/*if (access(argv[1], F_OK) == -1)
 	{
 		perror(argv[1]);
 		return (1);
@@ -65,11 +63,11 @@ void	cmd(char **argv, char **envp, t_vars va, int k)
 	char	**split;
 
 	split = ft_split(argv[k + 3], ' ');
-	if (is_builtin(split[0]))
+	/*if (is_builtin(split[0]))
 	{
 		do_builtin(ft_split(argv[k + 3], ' '), envp);
 		return ;
-	}
+	}*/
 	path = pathfinder(split[0], envp);
 	if (k == 0 && argv[0][0])
 	{
