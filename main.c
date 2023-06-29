@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/19 20:03:16 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:38:27 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int main(int argc, char **argv, char **envp)
 {
-    char *input;
-    char **args;
-    char **env;
+    char    *input;
+    char    **args;
+    t_env   *env;
 
     (void)argc;
     (void)argv;
-    env = cpy_env(envp);
+    cpy_env(&env, envp);
     while ((input = readline("minishell$ ")))
     {
         if (input == NULL)
@@ -39,19 +39,19 @@ int main(int argc, char **argv, char **envp)
         if(input[0] != '\0')
         {
             args = split_args(input);
-            args = ft_fix_args(args, env);
-            minishell(args, env);
+            args = ft_fix_args(args, &env);
+            minishell(args, &env);
             free(input);
             input = NULL;
             free_tab(args);
             args = NULL;
         }
     }
-    free_tab(env);
+    env = NULL;
     return (0);
 }
 
-int    minishell(char **argv, char **env)
+int    minishell(char **argv, t_env **env)
 {
     char **cmd_tab;
 
@@ -70,7 +70,6 @@ int    minishell(char **argv, char **env)
     }
     print_tab(cmd_tab);
     free_tab(cmd_tab);
-    (void)env;
     //pipex(cmd_tab, env);
     return (0);
 }

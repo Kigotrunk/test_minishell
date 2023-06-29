@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+         #
+#    By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 12:03:07 by kortolan          #+#    #+#              #
-#    Updated: 2023/06/19 18:34:54 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/20 15:15:18 by kortolan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS     =  main.c \
 			utils.c \
 			pipex.c \
 			pipex_utils.c \
+			builtin_unset.c \
 											
 
 OBJS    = $(SRCS:.c=.o)

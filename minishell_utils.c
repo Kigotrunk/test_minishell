@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/18 00:35:19 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:02:37 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char **ft_unset_utils(char **env, char	*var, int index)
-{
-	char **new_env;
-	int	i;
-	int	x;
-
-	i = 0;
-	x = 0;
-	(void)var;
-	while(env[i])
-		i++;
-	new_env = malloc(i * sizeof(char *));
-	i = 0;
-	while (env[i])
-	{
-		if (i != index)
-			new_env[x++] = ft_strdup(env[i]);
-		i++;
-	}
-	new_env[x] = NULL;
-	//ft_free_tab(env);
-	return (new_env);
-}
 
 int	ft_strlen_env(char *env)
 {
@@ -69,4 +45,41 @@ void	ft_putstr_echo(char *str, int i)
 		printf("%c", str[j + i]);
 		j++;
 	}
+}
+
+t_env	*lstnew(char *content, t_env *next)
+{
+	t_env	*lst;
+
+	lst = malloc(sizeof(t_env));
+	if (!lst)
+		return (NULL);
+	lst->e = content;
+	lst->next = next;
+	return (lst);
+}
+
+t_env	*ft_lstlast1(t_env *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
+
+
+int	ft_lst_size(t_env *lst)
+{
+	int	size;
+
+	if (!lst)
+		return(0);
+	size = 0;
+	while (lst)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
 }
