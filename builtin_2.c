@@ -48,7 +48,7 @@ void    builtin_env(t_env *env)
 		perror("env");
 	while (env)
 	{
-		printf("%s\n", *env->e);
+		printf("%s\n", *env->str);
 		*env = *env->next
 	}
 }*/

@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/27 18:01:08 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:56:24 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_vars
 
 typedef struct s_env
 {
-	char			*e;
+	char			*str;
 	struct s_env	*next;
 }	t_env;
  
@@ -109,6 +109,7 @@ int		ft_is_space(char c);
 char	*ft_str_add(char *str, char c);
 int 	ft_is_quote(char c);
 void    print_tab(char **argv);
+char	*ft_size_var(int *n, t_env **env);
 
 
 #endif
