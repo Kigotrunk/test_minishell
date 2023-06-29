@@ -12,24 +12,29 @@
 
 #include "minishell.h"
 
-void   cpy_env(t_env **env, char **envp)
+t_list   *cpy_env(char **envp)
 {
+    t_list   *new_env;
     int     i;
-    int     j;
 
     i = 0;
-    j = 0;
-    while (envp[j])
-        j++;
-    while (i < j)
+    new_env = ft_lstnew(envp[i]);
+    while (envp[i])
     {
-        *env = lstnew(envp[i], *env);
+        ft_lstadd_back(&new_env, envp[i]);
         i++;
     }
-    if (!env)
-    {
-        perror("malloc env : ");
-        exit(-1);
-    }
-    return ;
+    return (new_env);
 }
+/*
+t_env  *ft_envnew(void *content)
+{
+        t_env  *new;
+
+        new = malloc(sizeof(t_env));
+        if (new == NULL)
+                return (NULL);
+        new->content = content;
+        new->next = NULL;
+        return (new);
+}*/

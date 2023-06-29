@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 16:10:55 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:19:57 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ int     pipe_count(char **argv);
 char    **cmd_tab_init(int n);
 char    *ft_stradd(char *s1, char *s2);
 int     syntax_error(char **argv);
-int    minishell(char **argv, t_env **envp);
+int		minishell(char **argv, t_env **envp);
 
-t_env	*lstnew(char *content, t_env *next);
-t_env	*ft_lstlast1(t_env *lst);
-int	ft_lst_size(t_env *lst);
 int	    pipex(char **argv, t_env **env);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
@@ -86,17 +83,16 @@ char    *ft_str_lower(char *cmd);
 
 //ft_builtin_echo
 void	builtin_echo(char **argv);
-int	parsing_echo(char **argv, int index);
-void echo_d_quote(int *in);
-void echo_s_quote(int *in);
-void number_quote (char **argv, int index, int *count_s_quote, int *count_d_quote);
+int		parsing_echo(char **argv, int index);
+void	echo_d_quote(int *in);
+void	echo_s_quote(int *in);
+void 	number_quote (char **argv, int index, int *count_s_quote, int *count_d_quote);
 
 
 //ft_utils
-void	cpy_env(t_env **env, char **envp);
+t_list  *cpy_env(char **envp);
 void	ft_unset_utils(char **env, char	*var, int index);
 int		ft_strlen_env(char *env);
-void	ft_free_tab(char **tab);
 void    ft_print_echo(char **argv, int index);
 void	ft_putstr_echo(char *str, int i); 
 
