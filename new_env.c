@@ -26,15 +26,3 @@ t_list   *cpy_env(char **envp)
     }
     return (new_env);
 }
-/*
-t_env  *ft_envnew(void *content)
-{
-        t_env  *new;
-
-        new = malloc(sizeof(t_env));
-        if (new == NULL)
-                return (NULL);
-        new->content = content;
-        new->next = NULL;
-        return (new);
-}*/

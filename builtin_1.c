@@ -14,7 +14,7 @@
 // without MAJ : export unset exit
 // with MAJ : env cd pwd echo 
 // echo cd pwd export unset env exit
-/*int is_builtin(char *cmd)
+int is_builtin(char *cmd)
 {
     char    *all_cmd;
     char    **tab_cmd;
@@ -52,6 +52,7 @@ void    do_builtin(char **cmd, t_env **env)
         builtin_unset(env, cmd);
     if (ft_strncmp(cmd[0], "echo", ft_strlen(cmd[0])) == 0)
         builtin_echo(cmd);
+    
 }
 
 char    *ft_str_lower(char *cmd)
@@ -62,4 +63,4 @@ char    *ft_str_lower(char *cmd)
     while (cmd[i++])
         cmd [i] = ft_tolower(cmd[i]);
     return (cmd);
-}*/
+}

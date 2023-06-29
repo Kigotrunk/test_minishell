@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 17:19:57 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ typedef struct s_vars
 	int	*pid;
 	int	n;
 }		t_vars;
-
-typedef struct s_env
-{
-	char			*str;
-	struct s_env	*next;
-}	t_env;
  
 void    free_tab(char **tab);
 int     tab_size(char **tab);
@@ -54,8 +48,11 @@ int     pipe_count(char **argv);
 char    **cmd_tab_init(int n);
 char    *ft_stradd(char *s1, char *s2);
 int     syntax_error(char **argv);
-int		minishell(char **argv, t_env **envp);
+int    minishell(char **argv, t_env **envp);
 
+t_env	*lstnew(char *content, t_env *next);
+t_env	*ft_lstlast1(t_env *lst);
+int	ft_lst_size(t_env *lst);
 int	    pipex(char **argv, t_env **env);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
@@ -76,8 +73,8 @@ void    do_builtin(char **cmd, t_env **env);
 //ft_builtin
 void    builtin_cd(const char *path);
 void    builtin_pwd(char **cmd);
-void    builtin_env(t_env *envp);
-void	builtin_unset(t_env *env, char **argv);
+void    builtin_env(t_env **envp);
+void	builtin_unset(t_env **env, char **argv);
 char    *ft_str_lower(char *cmd);
 
 
@@ -90,8 +87,8 @@ void 	number_quote (char **argv, int index, int *count_s_quote, int *count_d_quo
 
 
 //ft_utils
-t_list  *cpy_env(char **envp);
-void	ft_unset_utils(char **env, char	*var, int index);
+t_env   *cpy_env(char **envp);
+void	ft_unset_utils(t_env **env, char *var, int index);
 int		ft_strlen_env(char *env);
 void    ft_print_echo(char **argv, int index);
 void	ft_putstr_echo(char *str, int i); 

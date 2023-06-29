@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 16:10:09 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ char	*ft_dollars(int *n, char *arg, int i, t_env **env)
 			break;
 		i++;	
 	}
-	while ((*env)->str)
+	while ((*env)->content)
 	{
-		if(strncmp(tmp, (*env)->str, ft_strlen(tmp)) == 0)
+		if(strncmp(tmp, (*env)->content, ft_strlen(tmp)) == 0)
 		{
 			new_str = ft_strdup(ft_size_var(n, env));
 			return (new_str);
@@ -118,19 +118,19 @@ char	*ft_dollars(int *n, char *arg, int i, t_env **env)
 	return ("");	
 }
 
-char	*ft_size_var(int *n, t_env **env)
+char	*ft_size_var(int *n, t_env *env)
 {
 	char	*new_str;
 	int	i;
 
 	new_str = ft_strdup("");
 	i = 0;
-	while ((*env)->str[i] != '=')
+	while (env->content[i] != '=')
 		i++;
-	while ((*env)->str[i])
+	while ((*env)->content[i])
 	{
 		i++;
-		new_str = ft_str_add(new_str, (*env)->str[i]);
+		new_str = ft_str_add(new_str, (*env)->content[i]);
 		*n += 1;
 	}
 	return (new_str);

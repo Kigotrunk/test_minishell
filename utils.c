@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:58:39 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 16:00:18 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    free_tab(char **tab)
         i = 0;
         if (tab == NULL)
             return ;
-        ft_printf("in free:\n");
+        //ft_printf("in free:\n");
         while (tab[i])
         {
                 ft_printf("%p\n", &tab[i]);
