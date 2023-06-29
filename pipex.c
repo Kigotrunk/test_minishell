@@ -6,13 +6,13 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:58:03 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 16:09:52 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:25:04 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	pipex(char **argv, t_env **env)
+int	pipex(char **argv, t_list **env)
 {
 	t_vars	va;
 	int		i;
@@ -36,7 +36,7 @@ int	pipex(char **argv, t_env **env)
 	return (exec_cmd(argv, *env, va));
 }
 
-int	exec_cmd(char *argv[], t_env *env, t_vars va)
+int	exec_cmd(char *argv[], t_list *env, t_vars va)
 {
 	int		i;
 	char	**envp;

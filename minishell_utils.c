@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 16:11:18 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:32:07 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	ft_putstr_echo(char *str, int i)
 	}
 }
 
-t_env	*lstnew(char *content, t_env *next)
+/*t_list	*lstnew(char *content, t_list *next)
 {
-	t_env	*lst;
+	t_list	*lst;
 
-	lst = malloc(sizeof(t_env));
+	lst = malloc(sizeof(t_list));
 	if (!lst)
 		return (NULL);
 	lst->str = content;
@@ -59,7 +59,7 @@ t_env	*lstnew(char *content, t_env *next)
 	return (lst);
 }
 
-t_env	*ft_lstlast1(t_env *lst)
+t_list	*ft_lstlast1(t_list *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -69,7 +69,7 @@ t_env	*ft_lstlast1(t_env *lst)
 }
 
 
-int	ft_lst_size(t_env *lst)
+int	ft_lst_size(t_list *lst)
 {
 	int	size;
 
@@ -82,4 +82,4 @@ int	ft_lst_size(t_env *lst)
 		lst = lst->next;
 	}
 	return (size);
-}
+}*/

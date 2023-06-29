@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-/*void    builtin_cd(const char *path)
+void    builtin_cd(const char *path)
 {
     int i;
 
@@ -39,7 +39,7 @@ void    builtin_pwd(char **cmd)
         	printf("%s\n", pwd);
 }
 
-void    builtin_env(t_env *env)
+void    builtin_env(t_list **env)
 {
 	int	x;
 
@@ -48,7 +48,7 @@ void    builtin_env(t_env *env)
 		perror("env");
 	while (env)
 	{
-		printf("%s\n", *env->str);
-		*env = *env->next
+		printf("%s\n", (*env)->content);
+		(*env) = (*env)->next;
 	}
-}*/
+}

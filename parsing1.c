@@ -6,13 +6,13 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 16:10:09 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:37:33 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_fix_args(char **args, t_env **env)
+char	**ft_fix_args(char **args, t_list **env)
 {
 	int	in_quote; 
 	int	i;
@@ -27,7 +27,7 @@ char	**ft_fix_args(char **args, t_env **env)
 	return (args);
 }
 
-char	*ft_str_replace(char *arg, int *in_quote, t_env **env)
+char	*ft_str_replace(char *arg, int *in_quote, t_list **env)
 {
 	char	*other;
 	
@@ -37,7 +37,7 @@ char	*ft_str_replace(char *arg, int *in_quote, t_env **env)
 	return (other);
 }
 
-char	*ft_size(char *arg, int	*in_quote, t_env **env)
+char	*ft_size(char *arg, int	*in_quote, t_list **env)
 {
 	int	n;
 	int	i;
@@ -71,7 +71,7 @@ char	*ft_size(char *arg, int	*in_quote, t_env **env)
 	return (new_str);
 }
 
-char	*ft_is_dollars(char *arg, int in_quote, int i, t_env **env)
+char	*ft_is_dollars(char *arg, int in_quote, int i, t_list **env)
 {
 	char	*new_str;
 	int	n;
@@ -85,7 +85,7 @@ char	*ft_is_dollars(char *arg, int in_quote, int i, t_env **env)
 	return ("$");
 }
 
-char	*ft_dollars(int *n, char *arg, int i, t_env **env)
+char	*ft_dollars(int *n, char *arg, int i, t_list **env)
 {
 	char	*tmp;
 	char	*new_str;
@@ -104,9 +104,9 @@ char	*ft_dollars(int *n, char *arg, int i, t_env **env)
 			break;
 		i++;	
 	}
-	while ((*env)->str)
+	while ((*env)->content)
 	{
-		if(strncmp(tmp, (*env)->str, ft_strlen(tmp)) == 0)
+		if(strncmp(tmp, (*env)->content, ft_strlen(tmp)) == 0)
 		{
 			new_str = ft_strdup(ft_size_var(n, env));
 			return (new_str);
@@ -118,19 +118,19 @@ char	*ft_dollars(int *n, char *arg, int i, t_env **env)
 	return ("");	
 }
 
-char	*ft_size_var(int *n, t_env **env)
+char	*ft_size_var(int *n, t_list *env)
 {
 	char	*new_str;
 	int	i;
 
 	new_str = ft_strdup("");
 	i = 0;
-	while ((*env)->str[i] != '=')
+	while (env->content[i] != '=')
 		i++;
-	while ((*env)->str[i])
+	while ((*env)->content[i])
 	{
 		i++;
-		new_str = ft_str_add(new_str, (*env)->str[i]);
+		new_str = ft_str_add(new_str, (*env)->content[i]);
 		*n += 1;
 	}
 	return (new_str);

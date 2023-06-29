@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 16:10:55 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:47:05 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ typedef struct s_vars
 	int	*pid;
 	int	n;
 }		t_vars;
-
-typedef struct s_env
-{
-	char			*str;
-	struct s_env	*next;
-}	t_env;
  
 void    free_tab(char **tab);
 int     tab_size(char **tab);
@@ -54,19 +48,19 @@ int     pipe_count(char **argv);
 char    **cmd_tab_init(int n);
 char    *ft_stradd(char *s1, char *s2);
 int     syntax_error(char **argv);
-int    minishell(char **argv, t_env **envp);
+int    minishell(char **argv, t_list **envp);
 
-t_env	*lstnew(char *content, t_env *next);
-t_env	*ft_lstlast1(t_env *lst);
-int	ft_lst_size(t_env *lst);
-int	    pipex(char **argv, t_env **env);
+t_list	*lstnew(char *content, t_list *next);
+t_list	*ft_lstlast1(t_list *lst);
+int	ft_lst_size(t_list *lst);
+int	    pipex(char **argv, t_list **env);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
 void	cmd(char **argv, char **envp, t_vars va, int k);
 void	close_all(int n, int **fd);
 int		check_errors(int *pid, int n);
-char    **get_tab_env(t_env *lst);
-int		exec_cmd(char *argv[], t_env *env, t_vars va);
+char    **get_tab_env(t_list *lst);
+int		exec_cmd(char *argv[], t_list *env, t_vars va);
 void	get_doc(char *argv[], t_vars va);
 int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
@@ -74,13 +68,13 @@ void	free_fd(int **fd, int n);
 
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);
-void    do_builtin(char **cmd, t_env **env);
+void    do_builtin(char **cmd, t_list **env);
 
 //ft_builtin
 void    builtin_cd(const char *path);
 void    builtin_pwd(char **cmd);
-void    builtin_env(t_env *envp);
-void	builtin_unset(t_env *env, char **argv);
+void    builtin_env(t_list **envp);
+void	builtin_unset(t_list **env, char **argv);
 char    *ft_str_lower(char *cmd);
 
 
@@ -91,26 +85,24 @@ void echo_d_quote(int *in);
 void echo_s_quote(int *in);
 void number_quote (char **argv, int index, int *count_s_quote, int *count_d_quote);
 
-
-//ft_utils
-void	cpy_env(t_env **env, char **envp);
-void	ft_unset_utils(char **env, char	*var, int index);
+void	cpy_env(t_list **env, char **envp);
+void	ft_unset_utils(t_list **env, char *var, int index);
 int		ft_strlen_env(char *env);
 void	ft_free_tab(char **tab);
 void    ft_print_echo(char **argv, int index);
 void	ft_putstr_echo(char *str, int i); 
 
 //parsing without quote and $
-char	**ft_fix_args(char **args, t_env **env);
-char	*ft_str_replace(char *arg, int *in_quote, t_env **env);
-char	*ft_size(char *arg, int	*in_quote, t_env **env);
-char	*ft_is_dollars(char *arg, int in_quote, int i, t_env **env);
-char	*ft_dollars(int *n, char *arg, int i, t_env **env);
+char	**ft_fix_args(char **args, t_list **env);
+char	*ft_str_replace(char *arg, int *in_quote, t_list **env);
+char	*ft_size(char *arg, int	*in_quote, t_list **env);
+char	*ft_is_dollars(char *arg, int in_quote, int i, t_list **env);
+char	*ft_dollars(int *n, char *arg, int i, t_list **env);
 int		ft_is_space(char c);
 char	*ft_str_add(char *str, char c);
 int 	ft_is_quote(char c);
 void    print_tab(char **argv);
-char	*ft_size_var(int *n, t_env **env);
+char	*ft_size_var(int *n, t_list **env);
 
 
 #endif
