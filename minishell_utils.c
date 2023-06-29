@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:15:12 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ void	ft_putstr_echo(char *str, int i)
 	}
 }
 
-t_env  *ft_lstnew(void *content)
+t_env  *ft_lstnew(void *str)
 {
         t_env  *new;
 
         new = malloc(sizeof(t_env));
         if (new == NULL)
                 return (NULL);
-        new->content = content;
+        new->str = str;
         new->next = NULL;
         return (new);
 }
@@ -59,6 +59,14 @@ void    ft_lstadd_back(t_env **lst, t_env *new)
                 last = ft_lstlast(*lst);
                 last->next = new;
         }
+}
+
+void    ft_lstdelone(t_env *lst, void (*del)(void*))
+{
+        if (!lst)
+                return ;
+        del(lst->str);
+        free(lst);
 }
 
 void    ft_lstclear(t_env **lst, void (*del)(void*))

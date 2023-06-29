@@ -12,16 +12,16 @@
 
 #include "minishell.h"
 
-t_list   *cpy_env(char **envp)
+t_env   *cpy_env(char **envp)
 {
-    t_list   *new_env;
+    t_env   *new_env;
     int     i;
 
     i = 0;
     new_env = ft_lstnew(envp[i]);
     while (envp[i])
     {
-        ft_lstadd_back(&new_env, envp[i]);
+        ft_lstadd_back(&new_env, ft_lstnew(envp[i]));
         i++;
     }
     return (new_env);

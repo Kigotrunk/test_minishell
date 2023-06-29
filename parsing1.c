@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:18:36 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ char	*ft_dollars(int *n, char *arg, int i, t_env **env)
 			break;
 		i++;	
 	}
-	while ((*env)->content)
+	while ((*env)->str)
 	{
-		if(strncmp(tmp, (*env)->content, ft_strlen(tmp)) == 0)
+		if(strncmp(tmp, (*env)->str, ft_strlen(tmp)) == 0)
 		{
-			new_str = ft_strdup(ft_size_var(n, env));
+			new_str = ft_strdup(ft_size_var(n, *env));
 			return (new_str);
 		}
 		*env = (*env)->next;
@@ -125,12 +125,12 @@ char	*ft_size_var(int *n, t_env *env)
 
 	new_str = ft_strdup("");
 	i = 0;
-	while (env->content[i] != '=')
+	while (env->str[i] != '=')
 		i++;
-	while ((*env)->content[i])
+	while (env->str[i])
 	{
 		i++;
-		new_str = ft_str_add(new_str, (*env)->content[i]);
+		new_str = ft_str_add(new_str, env->str[i]);
 		*n += 1;
 	}
 	return (new_str);

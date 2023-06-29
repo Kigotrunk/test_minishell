@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:21:53 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef struct s_vars
 	int	*pid;
 	int	n;
 }		t_vars;
+
+typedef struct s_env
+{
+	char			*str;
+	struct s_env	*next;
+}		t_env;
  
 void    free_tab(char **tab);
 int     tab_size(char **tab);
@@ -66,6 +72,14 @@ int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
 void	free_fd(int **fd, int n);
 
+//lst
+int     ft_lstsize(t_env *lst);
+t_env  *ft_lstlast(t_env *lst);
+void    ft_lstdelone(t_env *lst, void (*del)(void*));
+void    ft_lstclear(t_env **lst, void (*del)(void*));
+void    ft_lstadd_back(t_env **lst, t_env *new);
+t_env  *ft_lstnew(void *str);
+
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);
 void    do_builtin(char **cmd, t_env **env);
@@ -74,7 +88,7 @@ void    do_builtin(char **cmd, t_env **env);
 void    builtin_cd(const char *path);
 void    builtin_pwd(char **cmd);
 void    builtin_env(t_env **envp);
-void	builtin_unset(t_env **env, char **argv);
+t_env	*builtin_unset(t_env **env, char **argv);
 char    *ft_str_lower(char *cmd);
 
 
@@ -103,7 +117,6 @@ int		ft_is_space(char c);
 char	*ft_str_add(char *str, char c);
 int 	ft_is_quote(char c);
 void    print_tab(char **argv);
-char	*ft_size_var(int *n, t_env **env);
-
+char	*ft_size_var(int *n, t_env *env);
 
 #endif
