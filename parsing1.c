@@ -16,12 +16,16 @@ char	**ft_fix_args(char **args, t_env **env)
 {
 	int	in_quote; 
 	int	i;
+	char	*new_str;
 	
 	in_quote = 0;
 	i = 0;
 	while (args[i])
 	{
-		args[i] = ft_str_replace(args[i], &in_quote, env);
+		new_str = ft_str_replace(args[i], &in_quote, env);
+		free(args[i]);
+		args[i] = new_str;
+		free(new_str);
 		i++;
 	}
 	return (args);
