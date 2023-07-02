@@ -12,37 +12,63 @@
 
 #include "minishell.h"
 
-t_env	*builtin_unset(t_env **env, char **argv)
+t_env *builtin_unset(t_env *env, char **argv)
 {
-	//t_env	*previous;
-	t_env	*tmp_l;
-	int		j;
-	char	*tmp;
-	
-	if(!env)
-		return(NULL);
-	tmp_l = *env;
-	tmp = ft_strjoin(argv[1], "=");
-	if (!strncmp(tmp_l->str, tmp, ft_strlen(tmp)))
-	{
-		tmp_l = (*env)->next;
-		free(*env);
-		return (tmp_l);
-	}
-	while ((*env))
-	{
-	 	j = 2;
-	 	while (argv[j])
-	 	{
-			tmp = ft_strjoin(argv[j], "=");
-	 		if(!strncmp((*env)->str, tmp, ft_strlen(tmp)))
-			{
-				
-			}
-	 		j++;
-	 	}
-		(*env) = (*env)->next;
-	}
-	free(tmp);
-	return (tmp_l);
+    if (env == NULL || argv[0] == NULL || argv == NULL)
+        return env;
+
+    while (*argv)
+    {
+        env = remove_env_variable(env, *argv);
+        argv++;
+    }
+
+    return env;
+}
+
+t_env *remove_env_var(t_env *env, char *var)
+{
+	char *str;
+
+    str = ft_strjoin(var, "=");
+    env = remove_first(env, str);
+    env = remove_next(env, str);
+    free(str);
+
+    return env;
+}
+
+t_env *remove_first(t_env *env, char *str)
+{
+	t_env	*next;
+
+    if (!strncmp(env->str, str, ft_strlen(str)))
+    {
+        next = env->next;
+        free(env->str);
+        free(env);
+        env = next;
+    }
+    return env;
+}
+
+t_env *remove_next(t_env *env, char *str)
+{
+	t_env *current;
+	t_env *delete;
+
+    current = env;
+    while (current->next)
+    {
+        if (!strncmp(current->next->str, str, ft_strlen(str)))
+        {
+            delete = current->next;
+            current->next = delete->next;
+            free(delete->str);
+            free(delete);
+            break;
+        }
+        current = current->next;
+    }
+    return env;
 }
