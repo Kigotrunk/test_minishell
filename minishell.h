@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:21:53 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:51:26 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@
 
 typedef struct s_vars
 {
-	int	**fd;
-	int	*pid;
-	int	n;
+	int		n;
+	int		**fd;
+	int		*pid;
+	char	**envp;
+	char	**argv;
+	char	**io_lst;
 }		t_vars;
 
 typedef struct s_env
@@ -71,6 +74,8 @@ void	get_doc(char *argv[], t_vars va);
 int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
 void	free_fd(int **fd, int n);
+
+void    leak_test(t_env *lst);
 
 //lst
 int     ft_lstsize(t_env *lst);

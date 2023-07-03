@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:53:46 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:15:12 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:13:58 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_env  *ft_lstnew(void *str)
         new = malloc(sizeof(t_env));
         if (new == NULL)
                 return (NULL);
-        new->str = str;
+        new->str = ft_strdup(str);
         new->next = NULL;
         return (new);
 }

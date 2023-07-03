@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:58:39 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 18:25:31 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:47:13 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char    **get_tab_env(t_env *lst)
         i++;
         lst = lst->next;
     }
+    env[i] = NULL;
     return (env);
 }
 
@@ -63,7 +64,7 @@ void    print_tab(char **argv)
     i = 0;
     while (argv[i])
     {
-        //ft_printf("%s\n", argv[i]);
+        ft_printf("%s\n", argv[i]);
         i++;
     }
 }
