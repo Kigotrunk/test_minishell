@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 12:25:26 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:17:03 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **envp)
         if(input[0] != '\0')
         {
             args = split_args(input);
-            args = ft_fix_args(args, &env); //leaks
+            //leaks
             minishell(args, &env);
             free(input);
             input = NULL;
@@ -46,6 +46,7 @@ int main(int argc, char **argv, char **envp)
     }
     ft_lstclear(&env, &free);
     env = NULL;
+    //system("leaks minishell");
     return (0);
 }
 
@@ -66,10 +67,11 @@ int    minishell(char **argv, t_env **env)
         ft_printf("Format error\n");
         return (1);
     }
-    (void)env;
+    cmd_tab = ft_fix_args(cmd_tab, env); 
+    //(void)env;
     //print_tab(cmd_tab);
     pipex(cmd_tab, env);
-    free_tab(cmd_tab);
+    //free_tab(cmd_tab);
     cmd_tab = NULL;
     return (0);
 }

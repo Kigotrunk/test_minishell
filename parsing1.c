@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:18:36 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:41:11 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	**ft_fix_args(char **args, t_env **env)
 		new_str = ft_str_replace(args[i], &in_quote, env);
 		free(args[i]);
 		args[i] = new_str;
-		free(new_str);
 		i++;
 	}
 	return (args);

@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:58:03 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 12:28:42 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:17:32 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	pipex(char **argv, t_env **env)
 		perror(argv[1]);
 		return (1);
 	}*/
-	va.envp = get_tab_env(*env);
 	va.argv = argv;
 	//va.io_lst = io_list;
 	va.n = tab_size(argv) - 3;
@@ -46,6 +45,7 @@ int	exec_cmd(t_env **env, t_vars va)
 	i = 0;
 	while (i < va.n)
 	{
+		va.envp = get_tab_env(*env);
 		va.pid[i] = fork();
 		if (va.pid[i] < 0)
 			return (1);
@@ -65,10 +65,12 @@ void	cmd(t_env **env, t_vars va, int k)
 	char	*path;
 	char	**split;
 
-	split = ft_split(va.argv[k + 3], ' ');
+	split = split_args(va.argv[k + 3]);
+	if(env == NULL)
+		return ;
 	if (is_builtin(split[0]))
 	{
-		do_builtin(ft_split(va.argv[k + 3], ' '), env, va.envp);
+		do_builtin(split_args(va.argv[k + 3]), env, va.envp);
 		return ;
 	}
 	path = pathfinder(split[0], va.envp);

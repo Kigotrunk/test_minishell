@@ -45,13 +45,13 @@ void    do_builtin(char **cmd, t_env **env, char **envp)
     if(!envp)
         return ;
     if (ft_strncmp(cmd[0], "cd", ft_strlen(cmd[0])) == 0)
-        builtin_cd(cmd);
+        builtin_cd(cmd, env);
     if (ft_strncmp(cmd[0], "pwd", ft_strlen(cmd[0])) == 0 || ft_strncmp(cmd[0], "PWD", ft_strlen(cmd[0])) == 0)
         builtin_pwd(cmd);
-    if (ft_strncmp(cmd[0], "env", ft_strlen(cmd[0])) == 0)
+    if (ft_strncmp(cmd[0], "env", ft_strlen("env")) == 0)
         builtin_env(*env);
     if (ft_strncmp(cmd[0], "unset", ft_strlen(cmd[0])) == 0)
-        builtin_unset(*env, cmd);
+        *env = builtin_unset(*env, cmd);
     if (ft_strncmp(cmd[0], "echo", ft_strlen(cmd[0])) == 0)
         builtin_echo(cmd);
     

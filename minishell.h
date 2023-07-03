@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/07/03 12:25:23 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:03:23 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int     is_builtin(char *cmd);
 void    do_builtin(char **cmd, t_env **env, char **envp);
 
 //ft_builtin
-void    builtin_cd(char	**cmd);
+void    builtin_cd(char	**cmd, t_env **env);
 void    builtin_pwd(char **cmd);
 void    builtin_env(t_env *envp);
 char    *ft_str_lower(char *cmd);
@@ -100,6 +100,7 @@ t_env	*builtin_unset(t_env *env, char **argv);
 t_env *remove_env_var(t_env *env, char *var);
 t_env *remove_first(t_env *env, char *str);
 t_env *remove_next(t_env *env, char *str);
+
 //ft_builtin_echo
 void	builtin_echo(char **argv);
 int		parsing_echo(char **argv, int index);
