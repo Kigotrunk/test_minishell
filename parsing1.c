@@ -6,27 +6,32 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 17:19:33 by kortolan          #+#    #+#             */
-/*   Updated: 2023/06/29 18:18:36 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:06:17 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_fix_args(char **args, t_env **env)
+char	***ft_fix_args(char ***args, t_env **env)
 {
-	int	in_quote; 
+	int	in_quote;
+	int	j;
 	int	i;
 	char	*new_str;
 	
 	in_quote = 0;
-	i = 0;
-	while (args[i])
+	j = 0;
+	while (args[j])
 	{
-		new_str = ft_str_replace(args[i], &in_quote, env);
-		free(args[i]);
-		args[i] = new_str;
-		free(new_str);
-		i++;
+		i = 0;
+		while (args[j][i])
+		{
+			new_str = ft_str_replace(args[j][i], &in_quote, env);
+			free(args[j][i]);
+			args[j][i] = new_str;
+			i++;
+		}
+		j++;
 	}
 	return (args);
 }

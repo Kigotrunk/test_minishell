@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:58:39 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 12:22:11 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:10:16 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,25 @@ void    free_tab(char **tab)
         free(tab);
 }
 
-int tab_size(char **tab)
+void    free_tab_tab(char ***tab)
+{
+    int     i;
+
+        i = 0;
+        if (tab == NULL)
+            return ;
+        //ft_printf("in free:\n");
+        while (tab[i])
+        {
+                //ft_printf("%p\n", &tab[i]);
+                free_tab(tab[i]);
+                tab[i] = NULL;
+                i++;
+        }
+        free(tab);
+}
+
+int tab_size(char ***tab)
 {
     int i;
 
