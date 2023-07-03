@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kallegre <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 19:43:11 by kallegre          #+#    #+#              #
-#    Updated: 2022/12/03 15:09:51 by kallegre         ###   ########.fr        #
+#    Updated: 2023/06/29 18:29:02 by kortolan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,7 @@ SRCS		= ft_isalpha.c \
 		  ft_putnbr_fd.c \
 		  ft_strlcat.c \
 		  ft_strtrim.c
-BONUS_SRCS	= ft_lstadd_back.c \
-			  ft_lstadd_front.c \
-			  ft_lstlast.c \
-			  ft_lstnew.c \
-			  ft_lstsize.c \
-			  ft_lstdelone.c \
-			  ft_lstclear.c \
-			  ft_lstiter.c \
-			  ft_lstmap.c
+BONUS_SRCS	= 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f

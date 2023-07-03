@@ -12,15 +12,6 @@
 
 #include "minishell.h"
 
-void    builtin_cd(const char *path)
-{
-    int i;
-
-    i = chdir(path);
-    if (i == -1)
-        perror("path");
-}
-
 void    builtin_pwd(char **cmd)
 {
     char    *pwd;
@@ -39,7 +30,7 @@ void    builtin_pwd(char **cmd)
         	printf("%s\n", pwd);
 }
 
-void    builtin_env(t_env **env)
+void    builtin_env(t_env *env)
 {
 	int	x;
 
@@ -48,7 +39,7 @@ void    builtin_env(t_env **env)
 		perror("env");
 	while (env)
 	{
-		printf("%s\n", (*env)->str);
-		(*env) = (*env)->next;
+		ft_printf("%s\n", env->str);
+		env = env->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 11:58:03 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 18:01:30 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:19:40 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,23 @@ int	pipex(char **argv, t_env **env)
 		i++;
 	}
 	va.pid = (int *)malloc(sizeof(int) * va.n);
-	return (exec_cmd(argv, *env, va));
+	return (exec_cmd(argv, env, va));
 }
 
-int	exec_cmd(char *argv[], t_env *env, t_vars va)
+int	exec_cmd(char *argv[], t_env **env, t_vars va)
 {
-	int		i;
 	char	**envp;
 
-	i = 0;
-	envp = get_tab_env(env);
-	while (i < va.n)
+	va.k = 0;
+	envp = get_tab_env(*env);
+	while (va.k < va.n)
 	{
-		va.pid[i] = fork();
-		if (va.pid[i] < 0)
+		va.pid[va.k] = fork();
+		if (va.pid[va.k] < 0)
 			return (1);
-		if (va.pid[i] == 0)
-			cmd(argv, envp, va, i);
-		i++;
+		if (va.pid[va.k] == 0)
+			cmd(argv, envp, va, env);
+		va.k++;
 	}
 	free_tab(envp);
 	close_all(va.n, va.fd);
@@ -58,37 +57,37 @@ int	exec_cmd(char *argv[], t_env *env, t_vars va)
 	return (check_errors(va.pid, va.n));
 }
 
-void	cmd(char **argv, char **envp, t_vars va, int k)
+void	cmd(char **argv, char **env_arr, t_vars va, t_env **env)
 {
 	int		filein;
 	int		fileout;
 	char	*path;
 	char	**split;
 
-	split = ft_split(argv[k + 3], ' ');
-	/*if (is_builtin(split[0]))
+	split = ft_split(argv[va.k + 3], ' ');
+	if (is_builtin(split[0]))
 	{
-		do_builtin(ft_split(argv[k + 3], ' '), envp);
+		do_builtin(split, env);
 		return ;
-	}*/
-	path = pathfinder(split[0], envp);
-	if (k == 0 && argv[0][0])
+	}
+	path = pathfinder(split[0], env_arr);
+	if (va.k == 0 && argv[0][0])
 	{
 		filein = open(end_ope(argv[0]), O_RDONLY);
 		dup2(filein, 0);
 	}
-	if (k != 0)
-		dup2(va.fd[k - 1][0], 0);
-	if (k == va.n - 1 && argv[1][0])
+	if (va.k != 0)
+		dup2(va.fd[va.k - 1][0], 0);
+	if (va.k == va.n - 1 && argv[1][0])
 	{
 		unlink(end_ope(argv[1]));
 		fileout = open(end_ope(argv[1]), O_WRONLY | O_CREAT, 0666);
 		dup2(fileout, 1);
 	}
-	if (k != va.n - 1)
-		dup2(va.fd[k][1], 1);
+	if (va.k != va.n - 1)
+		dup2(va.fd[va.k][1], 1);
 	close_all(va.n, va.fd);
-	execve(path, split, envp);
+	execve(path, split, env_arr);
 	free_tab(split);
 	free(path);
 }

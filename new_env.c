@@ -19,6 +19,7 @@ t_env   *cpy_env(char **envp)
 
     i = 0;
     new_env = ft_lstnew(envp[i]);
+    i++;
     while (envp[i])
     {
         ft_lstadd_back(&new_env, ft_lstnew(envp[i]));
