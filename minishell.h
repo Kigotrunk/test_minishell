@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/07/03 12:06:34 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:25:23 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,16 @@ int	ft_lst_size(t_env *lst);
 int	    pipex(char **argv, t_env **env);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
-void	cmd(char **argv, char **envp, t_vars va, int k);
+void	cmd(t_env **env, t_vars va, int k);
 void	close_all(int n, int **fd);
 int		check_errors(int *pid, int n);
 char    **get_tab_env(t_env *lst);
-int		exec_cmd(char *argv[], t_env *env, t_vars va);
+int		exec_cmd(t_env **env, t_vars va);
 void	get_doc(char *argv[], t_vars va);
 int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
 void	free_fd(int **fd, int n);
 
-void    leak_test(t_env *lst);
 
 //lst
 int     ft_lstsize(t_env *lst);
@@ -87,7 +86,7 @@ t_env  *ft_lstnew(void *str);
 
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);
-void    do_builtin(char **cmd, t_env **env);
+void    do_builtin(char **cmd, t_env **env, char **envp);
 
 //ft_builtin
 void    builtin_cd(char	**cmd);

@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 12:03:19 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:25:26 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **envp)
         if(input[0] != '\0')
         {
             args = split_args(input);
-            //args = ft_fix_args(args, &env); //leak
+            args = ft_fix_args(args, &env); //leaks
             minishell(args, &env);
             free(input);
             input = NULL;
