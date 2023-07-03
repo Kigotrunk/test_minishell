@@ -6,7 +6,7 @@
 #    By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 19:43:11 by kallegre          #+#    #+#              #
-#    Updated: 2023/06/29 18:29:02 by kortolan         ###   ########.fr        #
+#    Updated: 2023/07/03 12:02:10 by kortolan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ SRCS		= ft_isalpha.c \
 		  ft_putnbr_fd.c \
 		  ft_strlcat.c \
 		  ft_strtrim.c
-BONUS_SRCS	= 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f

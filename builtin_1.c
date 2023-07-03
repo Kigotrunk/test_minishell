@@ -49,7 +49,7 @@ void    do_builtin(char **cmd, t_env **env)
     if (ft_strncmp(cmd[0], "env", ft_strlen(cmd[0])) == 0)
         builtin_env(*env);
     if (ft_strncmp(cmd[0], "unset", ft_strlen(cmd[0])) == 0)
-        builtin_unset(env, cmd);
+        builtin_unset(*env, cmd);
     if (ft_strncmp(cmd[0], "echo", ft_strlen(cmd[0])) == 0)
         builtin_echo(cmd);
     

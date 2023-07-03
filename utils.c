@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:58:39 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 19:49:02 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:02:35 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void    print_tab(char **argv)
     i = 0;
     while (argv[i])
     {
-        //ft_printf("%s\n", argv[i]);
+        ft_printf("%s\n", argv[i]);
         i++;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/07/03 11:37:14 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:06:34 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@
 
 typedef struct s_vars
 {
-	int	**fd;
-	int	*pid;
-	int	n;
+	int		n;
+	int		**fd;
+	int		*pid;
+	char	**envp;
+	char	**argv;
+	char	**io_lst;
 }		t_vars;
 
 typedef struct s_env
@@ -72,6 +75,8 @@ int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
 void	free_fd(int **fd, int n);
 
+void    leak_test(t_env *lst);
+
 //lst
 int     ft_lstsize(t_env *lst);
 t_env  *ft_lstlast(t_env *lst);
@@ -88,10 +93,14 @@ void    do_builtin(char **cmd, t_env **env);
 void    builtin_cd(char	**cmd);
 void    builtin_pwd(char **cmd);
 void    builtin_env(t_env *envp);
-t_env	*builtin_unset(t_env **env, char **argv);
 char    *ft_str_lower(char *cmd);
 
 
+//ft_builtin_unset
+t_env	*builtin_unset(t_env *env, char **argv);
+t_env *remove_env_var(t_env *env, char *var);
+t_env *remove_first(t_env *env, char *str);
+t_env *remove_next(t_env *env, char *str);
 //ft_builtin_echo
 void	builtin_echo(char **argv);
 int		parsing_echo(char **argv, int index);

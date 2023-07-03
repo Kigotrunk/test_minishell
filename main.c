@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/06/29 21:43:58 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:03:19 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ int main(int argc, char **argv, char **envp)
     while ((input = readline("minishell$ ")))
     {
         if (input == NULL)
-        {
-            ////free_tab(env);
             exit(1);
-        }
-        add_history(input); 
+        add_history(input);
         if (quote_check(input) != 0)
         {
             free(input);
@@ -39,7 +36,7 @@ int main(int argc, char **argv, char **envp)
         if(input[0] != '\0')
         {
             args = split_args(input);
-            args = ft_fix_args(args, &env);
+            //args = ft_fix_args(args, &env); //leak
             minishell(args, &env);
             free(input);
             input = NULL;
@@ -47,7 +44,7 @@ int main(int argc, char **argv, char **envp)
             args = NULL;
         }
     }
-    //ft_lstclear(&env, &free);
+    ft_lstclear(&env, &free);
     env = NULL;
     return (0);
 }
@@ -66,11 +63,13 @@ int    minishell(char **argv, t_env **env)
     cmd_tab = get_cmd_tab(argv);
     if (cmd_tab == NULL)
     {
-        ft_printf("Format error");
+        ft_printf("Format error\n");
         return (1);
     }
-    print_tab(cmd_tab);
+    (void)env;
+    //print_tab(cmd_tab);
     pipex(cmd_tab, env);
     free_tab(cmd_tab);
+    cmd_tab = NULL;
     return (0);
 }

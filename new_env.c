@@ -25,5 +25,19 @@ t_env   *cpy_env(char **envp)
         ft_lstadd_back(&new_env, ft_lstnew(envp[i]));
         i++;
     }
+    //leak_test(new_env);
     return (new_env);
+}
+
+void    leak_test(t_env *lst)
+{
+    int i;
+
+    i = 1;
+    while (lst)
+    {
+        ft_printf("%i: %p\n", i, lst);
+        lst = lst->next;
+        i++;
+    }
 }
