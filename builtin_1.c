@@ -43,7 +43,7 @@ int is_builtin(char *cmd)
 void    do_builtin(char **cmd, t_env **env)
 {
     if (ft_strncmp(cmd[0], "cd", ft_strlen(cmd[0])) == 0)
-        builtin_cd(cmd[1]);
+        builtin_cd(cmd);
     if (ft_strncmp(cmd[0], "pwd", ft_strlen(cmd[0])) == 0 || ft_strncmp(cmd[0], "PWD", ft_strlen(cmd[0])) == 0)
         builtin_pwd(cmd);
     if (ft_strncmp(cmd[0], "env", ft_strlen(cmd[0])) == 0)

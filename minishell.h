@@ -90,7 +90,7 @@ int     is_builtin(char *cmd);
 void    do_builtin(char **cmd, t_env **env);
 
 //ft_builtin
-void    builtin_cd(const char *path);
+void    builtin_cd(char	**cmd);
 void    builtin_pwd(char **cmd);
 void    builtin_env(t_env **envp);
 t_env	*builtin_unset(t_env **env, char **argv);

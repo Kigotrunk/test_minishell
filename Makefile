@@ -34,6 +34,8 @@ SRCS     =  main.c \
 			pipex.c \
 			pipex_utils.c \
 			builtin_unset.c \
+			builtin_exit.c \
+			builtin_cd.c \
 											
 
 OBJS    = $(SRCS:.c=.o)
