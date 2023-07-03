@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/07/03 11:51:26 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:15:28 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int    minishell(char **argv, t_env **envp);
 t_env	*lstnew(char *content, t_env *next);
 t_env	*ft_lstlast1(t_env *lst);
 int	ft_lst_size(t_env *lst);
-int	    pipex(char **argv, t_env **env);
+int	    pipex(char **argv, char **io_list, t_env **env);
 char	*pathfinder(char *str, char **envp);
 char	*ft_strjoin2(char const *s1, char const *s2);
-void	cmd(char **argv, char **envp, t_vars va, int k);
+void	cmd(t_env **env, t_vars va, int k);
 void	close_all(int n, int **fd);
 int		check_errors(int *pid, int n);
 char    **get_tab_env(t_env *lst);
-int		exec_cmd(char *argv[], t_env *env, t_vars va);
+int		exec_cmd(t_env **env, t_vars va);
 void	get_doc(char *argv[], t_vars va);
 int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
@@ -87,7 +87,7 @@ t_env  *ft_lstnew(void *str);
 
 //is_builtin && called ft_builtins
 int     is_builtin(char *cmd);
-void    do_builtin(char **cmd, t_env **env);
+void    do_builtin(char **cmd, t_env **env, char **envp);
 
 //ft_builtin
 void    builtin_cd(char	**cmd);

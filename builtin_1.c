@@ -40,7 +40,7 @@ int is_builtin(char *cmd)
     return (0);
 }
 
-void    do_builtin(char **cmd, t_env **env)
+void    do_builtin(char **cmd, t_env **env, char **envp)
 {
     if (ft_strncmp(cmd[0], "cd", ft_strlen(cmd[0])) == 0)
         builtin_cd(cmd);
