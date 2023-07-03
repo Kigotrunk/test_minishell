@@ -6,11 +6,13 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 17:26:25 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 09:28:28 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:13:17 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	err_code;
 
 char	*pathfinder(char *str, char **envp)
 {
@@ -37,8 +39,27 @@ char	*pathfinder(char *str, char **envp)
 		i++;
 	}
 	free_tab(split);
-	perror("command not found");
+	path_error(str);
 	exit(127);
+}
+
+void	path_error(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '/')
+		{
+			ft_printf("minishell: %s: No such file or directory\n", str);
+			err_code = 127;
+			return ;
+		}
+		i++;
+	}
+	ft_printf("minishell: %s: command not found\n", str);
+	err_code = 127;
 }
 
 char	*ft_strjoin2(char const *s1, char const *s2)

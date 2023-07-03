@@ -6,7 +6,7 @@
 /*   By: kallegre <kallegre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 15:01:12 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 11:51:32 by kallegre         ###   ########.fr       */
+/*   Updated: 2023/07/03 18:47:50 by kallegre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,64 +46,133 @@ int     pipe_count(char **argv)
     return (n);
 }
 
-char    **get_cmd_tab(char **argv)
+int     redir_count(char **argv)
 {
-    char    **cmd_tab;
+    int n;
+    int i;
+
+    n = 0;
+    i = 0;
+    while (argv[i])
+    {
+        if (argv[i][0] == '<' || argv[i][0] == '>')
+            n++;
+        i++;
+    }
+    return (n);
+}
+
+int     args_count(char **tab)
+{
+    int i;
+
+    i = 0;
+    while(tab[i] && !is_ope(tab[i]))
+        i++;
+    return (i);
+}
+
+char    **get_argv(char **tab)
+{
+    char    **argv;
+    int     ac;
+    int     i;
+
+    ac = args_count(tab);
+    argv = (char **)malloc((ac + 1) * sizeof(char *));
+    i = 0;
+    while(i < ac)
+    {
+        argv[i] = ft_strdup(tab[i]);
+        i++;
+    }
+    argv[i] = NULL;
+    return (argv);
+}
+
+char    ***get_cmd_tab(char **tab)
+{
+    char    ***cmd_tab;
     int     i;
     int     k;
 
-    cmd_tab = cmd_tab_init(pipe_count(argv) + 5);
+    cmd_tab = cmd_tab_init(pipe_count(tab) + 2);
     i = 0;
-    k = 3;
-    while (argv[i])
+    k = 0;
+    while (tab[i])
     {
-        if (argv[i][0] == '|')
+        if (tab[i][0] == '|')
             i++;
-        else if (is_ope(argv[i]))
-        {
-            if (!argv[i + 1])
-                return (NULL);
-            if (argv[i][0] == '<')
-                cmd_tab[0] = ft_strjoin(argv[i], argv[i + 1]);
-            if (argv[i][0] == '>')
-                cmd_tab[1] = ft_strjoin(argv[i], argv[i + 1]);
-            if (argv[i][0] == '2' && argv[i][1] == '>')
-                cmd_tab[2] = ft_strjoin(argv[i], argv[i + 1]);
+        else if (is_ope(tab[i]))
             i += 2;
-        }
         else
         {
-            while (argv[i] && !is_ope(argv[i]))
-            {
-                if (cmd_tab[k] == NULL)
-                    cmd_tab[k] = ft_strdup(argv[i]);
-                else
-                    cmd_tab[k] = ft_stradd(cmd_tab[k], argv[i]);
-                //ft_printf("cmd_tab[%d] = %p\n", k, &cmd_tab[k]);
-                i++;
-            }
+            cmd_tab[k] = get_argv(tab + i);
             k++;
+            i += args_count(tab + i);
         }
     }
     cmd_tab[k] = NULL;
     return (cmd_tab);
 }
 
-char    **cmd_tab_init(int n)
+char    **get_io(char **argv)
 {
-    char    **cmd_tab;
+    char    **io_tab;
     int     i;
 
-    cmd_tab = (char **)malloc(n * sizeof(char *));
-    //ft_printf("cmd_tab = %p\n", &cmd_tab);
+    io_tab = io_init();
+    i = 0;
+    while (argv[i])
+    {
+        if (is_ope(argv[i]) && argv[i][0] != '|')
+        {
+            if (!argv[i + 1])
+                return (NULL);
+            if (argv[i][0] == '<') {
+                free(io_tab[0]);
+                io_tab[0] = ft_strjoin(argv[i], argv[i + 1]);
+            }
+            if (argv[i][0] == '>') {
+                free(io_tab[1]);
+                io_tab[1] = ft_strjoin(argv[i], argv[i + 1]);
+            }
+            if (argv[i][0] == '2' && argv[i][1] == '>') {
+                free(io_tab[2]);
+                io_tab[2] = ft_strjoin(argv[i], argv[i + 1]);
+            }
+            i += 2;
+        }
+        else
+            i++;
+    }
+    return (io_tab);
+}
+
+char    **io_init()
+{
+    char    **io_tab;
+    int     i;
+
+    io_tab = (char **)malloc(4 * sizeof(char *));
     i = 0;
     while (i < 3)
     {
-        cmd_tab[i] = malloc(1);
-        cmd_tab[i][0] = '\0';
-        //ft_printf("cmd_tab[%d] = %p\n", i, &cmd_tab[i]);
+        io_tab[i] = malloc(1);
+        io_tab[i][0] = '\0';
         i++;
     }
+    io_tab[i] = NULL;
+    return (io_tab);
+}
+
+char    ***cmd_tab_init(int n)
+{
+    char    ***cmd_tab;
+    int     i;
+
+    cmd_tab = (char ***)malloc(n * sizeof(char **));
+    i = 0;
     while(i < n)
     {
         cmd_tab[i] = NULL;
@@ -127,6 +196,7 @@ char    *ft_stradd(char *s1, char *s2)
         s1++;
         i++;
     }
+    free(s1 - i);
     s[i] = ' ';
     i++;
     while (*s2)

@@ -6,11 +6,13 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 15:04:14 by kallegre          #+#    #+#             */
-/*   Updated: 2023/07/03 19:17:03 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:24:02 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int err_code = 0;
 
 int main(int argc, char **argv, char **envp)
 {
@@ -33,16 +35,12 @@ int main(int argc, char **argv, char **envp)
             ft_printf("Error\n");
             continue ;
         }
-        if(input[0] != '\0')
-        {
-            args = split_args(input);
-            //leaks
-            minishell(args, &env);
-            free(input);
-            input = NULL;
-            free_tab(args);
-            args = NULL;
-        }
+        args = split_args(input);
+        minishell(args, &env);
+        free(input);
+        input = NULL;
+        free_tab(args);
+        args = NULL;
     }
     ft_lstclear(&env, &free);
     env = NULL;
@@ -52,7 +50,8 @@ int main(int argc, char **argv, char **envp)
 
 int    minishell(char **argv, t_env **env)
 {
-    char **cmd_tab;
+    char ***cmd_tab;
+    char **io_tab;
 
     if (argv == NULL)
         return (0);
@@ -67,11 +66,10 @@ int    minishell(char **argv, t_env **env)
         ft_printf("Format error\n");
         return (1);
     }
-    cmd_tab = ft_fix_args(cmd_tab, env); 
-    //(void)env;
-    //print_tab(cmd_tab);
-    pipex(cmd_tab, env);
-    //free_tab(cmd_tab);
-    cmd_tab = NULL;
+    cmd_tab = ft_fix_args(cmd_tab, env); //leak
+    io_tab = get_io(argv);
+    pipex(cmd_tab, io_tab, env);
+    free_tab_tab(cmd_tab);
+    free_tab(io_tab);
     return (0);
 }

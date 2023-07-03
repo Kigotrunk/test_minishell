@@ -6,7 +6,7 @@
 /*   By: kortolan <kortolan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 17:58:04 by kortolan          #+#    #+#             */
-/*   Updated: 2023/07/03 18:03:23 by kortolan         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:25:17 by kortolan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_vars
 	int		**fd;
 	int		*pid;
 	char	**envp;
-	char	**argv;
+	char	***argv;
 	char	**io_lst;
 }		t_vars;
 
@@ -42,7 +42,8 @@ typedef struct s_env
 }		t_env;
  
 void    free_tab(char **tab);
-int     tab_size(char **tab);
+void	free_tab_tab(char ***tab);
+int     tab_size(char ***tab);
 int     quote_check(char *str);
 int     is_ope(char *str);
 char    *end_ope(char *str);
@@ -52,18 +53,20 @@ char    *eoa_str(char *str);
 int     arg_len(char *str);
 char	*get_arg(char *str);
 char	**split_args(char *str);
-char    **get_cmd_tab(char **argv);
+char    ***get_cmd_tab(char **tab);
+char    **get_io(char **argv);
 int     pipe_count(char **argv);
-char    **cmd_tab_init(int n);
+int     redir_count(char **argv);
+char    ***cmd_tab_init(int n);
+char    **io_init();
 char    *ft_stradd(char *s1, char *s2);
 int     syntax_error(char **argv);
 int    minishell(char **argv, t_env **envp);
 
-t_env	*lstnew(char *content, t_env *next);
-t_env	*ft_lstlast1(t_env *lst);
-int	ft_lst_size(t_env *lst);
-int	    pipex(char **argv, t_env **env);
+//pipex
+int	    pipex(char ***argv, char **io_list, t_env **env);
 char	*pathfinder(char *str, char **envp);
+void	path_error(char *str);
 char	*ft_strjoin2(char const *s1, char const *s2);
 void	cmd(t_env **env, t_vars va, int k);
 void	close_all(int n, int **fd);
@@ -74,7 +77,6 @@ void	get_doc(char *argv[], t_vars va);
 int		here_doc(int argc, char *argv[], char *envp[]);
 int		exec_cmd_b(char *argv[], char *envp[], t_vars va);
 void	free_fd(int **fd, int n);
-
 
 //lst
 int     ft_lstsize(t_env *lst);
@@ -117,7 +119,7 @@ void    ft_print_echo(char **argv, int index);
 void	ft_putstr_echo(char *str, int i); 
 
 //parsing without quote and $
-char	**ft_fix_args(char **args, t_env **env);
+char	***ft_fix_args(char ***args, t_env **env);
 char	*ft_str_replace(char *arg, int *in_quote, t_env **env);
 char	*ft_size(char *arg, int	*in_quote, t_env **env);
 char	*ft_is_dollars(char *arg, int in_quote, int i, t_env **env);
