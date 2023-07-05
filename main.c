@@ -22,6 +22,8 @@ int main(int argc, char **argv, char **envp)
 
     (void)argc;
     (void)argv;
+    signal(SIGINT, ft_sig);
+    signal(SIGQUIT, ft_sig)
     env = cpy_env(envp);
     while ((input = readline("minishell$ ")))
     {

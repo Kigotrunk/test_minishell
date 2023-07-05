@@ -21,7 +21,6 @@ int is_builtin(char *cmd)
     int     i;
 
     i = 0;
-    all_cmd = malloc(ft_strlen("export unset exit env cd pwd echo") * sizeof(char));
     all_cmd = "export unset exit env cd pwd echo";
     tab_cmd = ft_split(all_cmd, ' ');
     while (tab_cmd[i] && i <= 2)
@@ -54,6 +53,7 @@ void    do_builtin(char **cmd, t_env **env, char **envp)
         *env = builtin_unset(*env, cmd);
     if (ft_strncmp(cmd[0], "echo", ft_strlen(cmd[0])) == 0)
         builtin_echo(cmd);
+    if(ft)
     
 }
 

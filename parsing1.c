@@ -100,9 +100,10 @@ char	*ft_dollars(int *n, char *arg, int i, t_env **env)
 	char	*new_str;
 	int		j;
 
-	tmp = ft_strdup("");
+	
 	if (!arg[i + 1] || ft_is_space(arg[i + 1]) == 1 || ft_is_quote(arg[i + 1]))
 		return ("$");
+	tmp = ft_strdup("");
 	i++;
 	j = 0;
 	while (arg[i])

@@ -31,14 +31,4 @@ void    builtin_cd(char **argv, t_env **env)
     }
     pwd = (char *)malloc(2048 * sizeof(char));
     pwd = getcwd(pwd, 2048);
-    //ft_change_pwd(env, pwd);
 }
-
-/*void    ft_change_pwd(t_env **env, char *pwd)
-{
-    t_env   *tmp;
-    while ((*env)->next)
-    {
-        if (())
-    }
-}*/
